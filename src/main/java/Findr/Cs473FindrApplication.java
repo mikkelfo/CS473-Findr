@@ -10,4 +10,5 @@ public class Cs473FindrApplication {
 		SpringApplication.run(Cs473FindrApplication.class, args);
 	}
 
+
 }
