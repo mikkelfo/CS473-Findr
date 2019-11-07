@@ -26,12 +26,12 @@ const DATA = [
 
 const PictureCard = props => {
     return (
-            <TouchableOpacity onPress={() => selectMovie(props.id)}>
+            <TouchableOpacity onPress={() => selectPicture(props.id)}>
                 <Image style={styles.pic}/>
             </TouchableOpacity>
     );
 };
-function selectMovie(id) {
+function selectPicture(id) {
     alert(id)
 }
 
