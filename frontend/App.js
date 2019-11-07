@@ -1,43 +1,39 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import PictureRow from './PictureRow';
+import Header from "./Header";
 
-export default function App() {
-  return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text>
-            Top bar
-          </Text>
-        </View>
-        <View style={styles.body}>
-          <Text>
-            Body text 5
-          </Text>
-        </View>
-        <View style={styles.footer}>
-          <View style={styles.circle}>
+
+export default class MainScreen extends Component {
+  render() {
+    return (
+        <View style={styles.container}>
+          <Header/>
+          <View style={styles.body}>
+            <PictureRow title='Questions'/>
+            <PictureRow title='Favorites'/>
+            <PictureRow title='Matches'/>
           </View>
-          <View style={styles.circle}>
-          </View>
-          <View style={styles.circle}>
+          <View style={styles.footer}>
+            <View style={styles.circle}/>
+            <View style={styles.circle}/>
+            <View style={styles.circle}/>
           </View>
         </View>
-      </View>
-  );
+    );
+  }
 }
+const COLORS = {
+  white: '#fff',
+  black: '#000',
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     alignItems: 'center',
     alignSelf: 'stretch',
-  },
-
-  header: {
-    height: 80,
-    alignSelf: 'stretch',
-    backgroundColor: "blue",
   },
 
   body: {
@@ -61,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 65/2,
     borderColor: "black",
     borderWidth: 0.1,
-    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.5,
     shadowRadius: 10,
