@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import PictureRow from './PictureRow';
-import Header from "./Header";
+import PictureRow from './Components/PictureRow';
+import Header from "./Components/Header";
+import ActionBar from "./Components/ActionBar"
 
 
 export default class MainScreen extends Component {
@@ -14,11 +15,7 @@ export default class MainScreen extends Component {
             <PictureRow title='Favorites'/>
             <PictureRow title='Matches'/>
           </View>
-          <View style={styles.footer}>
-            <View style={styles.circle}/>
-            <View style={styles.circle}/>
-            <View style={styles.circle}/>
-          </View>
+          <ActionBar/>
         </View>
     );
   }
@@ -41,26 +38,4 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 
-  footer: {
-    height: 80,
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: "center",
-    padding: 25
-  },
-
-  circle: {
-    backgroundColor: "white",
-    height: 65,
-    width: 65,
-    borderRadius: 65/2,
-    borderColor: "black",
-    borderWidth: 0.1,
-    shadowColor: COLORS.shadow,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 3,
-  }
 });
