@@ -20,15 +20,11 @@ export default class MainScreen extends Component {
     );
   }
 }
-const COLORS = {
-  white: '#fff',
-  black: '#000',
-};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fff",
     alignItems: 'center',
     alignSelf: 'stretch',
   },
