@@ -1,37 +1,27 @@
-import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import PictureRow from './Components/PictureRow';
-import Header from "./Components/Header";
-import ActionBar from "./Components/ActionBar"
+import React from 'react';
+import Bookmark from "./Components/Bookmark";
+import { fadeIn } from 'react-navigation-transitions';
 
 
-export default class MainScreen extends Component {
-  render() {
-    return (
-        <View style={styles.container}>
-          <Header/>
-          <View style={styles.body}>
-            <PictureRow title='Questions'/>
-            <PictureRow title='Favorites'/>
-            <PictureRow title='Matches'/>
-          </View>
-          <ActionBar/>
-        </View>
-    );
-  }
-}
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import Main from "./Components/Main";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
 
-  body: {
-    flex: 1,
-    alignSelf: 'stretch',
-  },
+const MainNavigator = createStackNavigator(
+    {
+        Main: {screen: Main},
+        Bookmark: {screen: Bookmark},
+    },
+    {
+        initialRouteName: 'Main',
+        transitionConfig: () => fadeIn(),
+        defaultNavigationOptions: {
+            header: null,
+        },
+    },
+);
 
-});
+const App = createAppContainer(MainNavigator);
+
+export default App;
