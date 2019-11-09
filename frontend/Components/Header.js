@@ -3,6 +3,8 @@ import {StyleSheet, View, TouchableOpacity} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconO from 'react-native-vector-icons/Octicons';
 import Constants from 'expo-constants';
+import {DrawerActions} from "react-navigation-drawer";
+
 
 
 class Header extends Component {
@@ -18,7 +20,7 @@ class Header extends Component {
                         <IconFA
                             name="user-circle"
                             size={65}
-                            onPress={() => navigate('Main')}
+                            onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
                         />
                     </View>
                 </TouchableOpacity >

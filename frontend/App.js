@@ -1,30 +1,34 @@
 import React from 'react';
 
-import { fadeIn } from 'react-navigation-transitions';
-
-
 import {createAppContainer} from 'react-navigation';
+import MainScreen from "./Screens/MainScreen";
+import BookmarkScreen from "./Screens/BookmarkScreen";
+import DiscoveryScreen from "./Screens/DiscoveryScreen";
 import {createStackNavigator} from 'react-navigation-stack';
-import Bookmark from "./Components/Bookmark";
-import Main from "./Components/Main";
-import DiscoveryPage from "./Components/DiscoveryPage";
+import {createDrawerNavigator} from "react-navigation-drawer";
+import SideMenu from "./Components/SideMenu";
+import {fadeIn} from "react-navigation-transitions";
 
 
 const MainNavigator = createStackNavigator(
     {
-        Main: {screen: Main},
-        Bookmark: {screen: Bookmark},
-        Discovery: {screen: DiscoveryPage},
+        Main: {screen: MainScreen},
+        Bookmark: {screen: BookmarkScreen},
+        Discovery: {screen: DiscoveryScreen},
     },
     {
-        initialRouteName: 'Discovery',
+        initialRouteName: 'Main',
         transitionConfig: () => fadeIn(),
-        defaultNavigationOptions: {
-            header: null,
-        },
+        defaultNavigationOptions: {header: null},
     },
 );
 
-const App = createAppContainer(MainNavigator);
+const AppDrawerNavigator = createDrawerNavigator({
+    Main: MainNavigator,
+}, {
+    contentComponent: SideMenu,
+});
+
+const App = createAppContainer(AppDrawerNavigator);
 
 export default App;

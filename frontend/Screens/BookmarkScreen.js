@@ -1,9 +1,9 @@
 import React, {Component}from 'react';
 import {StyleSheet, View} from "react-native";
-import Header from "./Header";
-import PictureRow from "./PictureRow";
+import Header from "../Components/Header";
+import PictureRow from "../Components/PictureRow";
 
-export default class Bookmark extends Component {
+export default class BookmarkScreen extends Component {
     render() {
         return (
             <View style={styles.container}>

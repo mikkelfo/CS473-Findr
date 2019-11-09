@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FlatList, Text, View, StyleSheet, Image, TouchableOpacity, Dimensions} from "react-native";
-import Header from "./Header";
+import Header from "../Components/Header";
 
 // TODO: Load data (pictures) from database
 let DATA = [
@@ -18,7 +18,7 @@ const Picture = props => {
 const numColumns = 3;
 const {height, width} = Dimensions.get("window");
 
-class DiscoveryPage extends Component {
+class DiscoveryScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DiscoveryPage;
+export default DiscoveryScreen;
