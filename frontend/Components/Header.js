@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {StyleSheet, View, TouchableOpacity} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconO from 'react-native-vector-icons/Octicons';
+import Constants from 'expo-constants';
+
 
 class Header extends Component {
     static navigationOptions = {
@@ -34,6 +36,7 @@ class Header extends Component {
                         <IconO
                             name="flame"
                             size={65}
+                            onPress={() => navigate('Discovery')}
                         />
                     </View>
                 </TouchableOpacity>
@@ -48,7 +51,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: "center",
-        padding: 25
+        padding: 25,
+        marginTop: Constants.statusBarHeight,
     },
     square: {
         minWidth: 65,

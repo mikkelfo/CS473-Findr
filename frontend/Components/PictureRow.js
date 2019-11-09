@@ -41,7 +41,6 @@ const PictureRow = props => {
             <Text style={styles.title}>{props.title}</Text>
             <FlatList
                 contentContainerStyle={styles.item}
-                style={styles.list}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={DATA}
