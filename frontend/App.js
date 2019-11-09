@@ -27,6 +27,7 @@ const AppDrawerNavigator = createDrawerNavigator({
     Main: MainNavigator,
 }, {
     contentComponent: SideMenu,
+    drawerWidth: 225,
 });
 
 const App = createAppContainer(AppDrawerNavigator);
