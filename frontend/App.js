@@ -9,7 +9,6 @@ import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
 import {fadeIn} from "react-navigation-transitions";
 
-
 const MainNavigator = createStackNavigator(
     {
         Main: {screen: MainScreen},

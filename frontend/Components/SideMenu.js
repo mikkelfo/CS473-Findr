@@ -6,7 +6,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome';
 const Link = props => {
     return (
         <TouchableNativeFeedback
-        onPress={() => alert("ok")}> // TODO: Add navigation
+            onPress={() => props.navigation.navigate(props.nav)}>
             <View style={styles.link}>
                 <IconFA name={props.name} size={20} style="regular"/>
                 <Text style={{fontSize: 18, marginLeft:10}}>{props.title}</Text>
@@ -15,12 +15,13 @@ const Link = props => {
     )
 };
 
-const SideMenu = () => {
+const SideMenu = props => {
     return(
         <View style={styles.container}>
             <Image style={styles.pb}/>
-            <Link name="user-circle" title="Profile"/>
-            <Link name="upload" title="Upload image"/>
+            <Link name="user-circle" title="Profile" navigation={props.navigation}/>
+            <Link name="upload" title="Upload image" navigation={props.navigation}/>
+            <Link name="bookmark" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
         </View>
     )
 };
