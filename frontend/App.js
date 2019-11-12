@@ -8,15 +8,17 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
 import {fadeIn} from "react-navigation-transitions";
+import FullScreenPicture from "./Components/FullScreenPicture";
 
 const MainNavigator = createStackNavigator(
     {
         Main: {screen: MainScreen},
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},
+        FullPic: {screen: FullScreenPicture}
     },
     {
-        initialRouteName: 'Main',
+        initialRouteName: 'Bookmark',
         transitionConfig: () => fadeIn(),
         defaultNavigationOptions: {header: null},
     },
