@@ -1,5 +1,5 @@
 import React, {Component}from 'react';
-import {StyleSheet, View} from "react-native";
+import {ScrollView, StyleSheet, View} from "react-native";
 import Header from "../Components/Header";
 import PictureRow from "../Components/PictureRow";
 
@@ -8,11 +8,17 @@ export default class BookmarkScreen extends Component {
         return (
             <View style={styles.container}>
                 <Header navigation={this.props.navigation}/>
-                <View style={styles.body}>
-                    <PictureRow title='Questions'/>
-                    <PictureRow title='Favorites'/>
-                    <PictureRow title='Matches'/>
-                </View>
+                <ScrollView style={styles.body}>
+                    <PictureRow
+                        title='Questions'
+                        navigation={this.props.navigation}/>
+                    <PictureRow
+                        title='Favorites'
+                        navigation={this.props.navigation}/>
+                    <PictureRow
+                        title='Matches'
+                        navigation={this.props.navigation}/>
+                </ScrollView>
             </View>
         );
     }
@@ -24,6 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: 'center',
         alignSelf: 'stretch',
+        marginHorizontal: 10,
     },
     body: {
         flex: 1,

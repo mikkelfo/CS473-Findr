@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {FlatList, Text, View, StyleSheet, Image, TouchableOpacity} from "react-native";
+import Thumbnail from "./Thumbnail";
 
 // TODO: Load data (pictures) from database
 const DATA = [
@@ -24,58 +25,57 @@ const DATA = [
     },
 ];
 
-const PictureCard = props => {
-    return (
-            <TouchableOpacity onPress={() => selectPicture(props.id)}>
-                <Image style={styles.pic}/>
-            </TouchableOpacity>
-    );
-};
-function selectPicture(id) {
-    alert(id)
-}
-
-const PictureRow = props => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{props.title}</Text>
-            <FlatList
-                contentContainerStyle={styles.item}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                data={DATA}
-                renderItem={({item}) => <PictureCard src={item.src} id={item.id}/>}
-                keyExtractor={item => item.id}
-            />
-        </View>
-    );
+export default class PictureRow extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            horizontal: true,
+            columns: 1,
+        }
+    }
+    expandRow() {
+        if (this.state.horizontal) {
+            this.setState({
+                horizontal: false,
+                columns: 3,
+            })
+        } else {
+            this.setState({
+                horizontal: true,
+                columns: 1
+            })
+        }
+    }
+    render() {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => this.expandRow()}>
+                    <Text style={styles.title}>{this.props.title}</Text>
+                </TouchableOpacity>
+                <FlatList
+                    contentContainerStyle={styles.list}
+                    horizontal={this.state.horizontal}
+                    numColumns={this.state.columns}
+                    showsHorizontalScrollIndicator={false}
+                    data={DATA}
+                    renderItem={({item}) => <Thumbnail src={item.src} id={item.id} navigation={this.props.navigation}/>}
+                    keyExtractor={item => item.id}
+                    key={this.state.horizontal}
+                />
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:10,
-        paddingVertical: 10,
-    },
-    item: {
-        marginHorizontal: 10,
-    },
-    pic: {
-        backgroundColor: '#f97777',
-        width: 100,
-        height: 100,
-        borderRadius: 3,
-        marginRight: 20,
-
-        // TODO: Remove when there's pictures
-        alignItems: "center",
-        justifyContent: "center",
+        marginVertical: 10,
     },
     title: {
         fontSize: 25,
         fontWeight: "bold",
-        paddingHorizontal: 10,
         marginBottom:10,
+        color: "black",
     },
 });
 
-export default PictureRow;
