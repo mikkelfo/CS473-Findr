@@ -1,5 +1,14 @@
-import React from 'react';
-import {View, StyleSheet, Text, StatusBar, FlatList, ScrollView} from "react-native";
+import React, {Component} from 'react';
+import {
+    View,
+    StyleSheet,
+    Text,
+    StatusBar,
+    FlatList,
+    ScrollView,
+    TouchableOpacity
+} from "react-native";
+import IconFA from 'react-native-vector-icons/FontAwesome';
 
 const comments = [
     {   username: "user1",
@@ -35,37 +44,104 @@ const Reply = props => {
         </View>
     )
 };
-
-const Comment = props => {
-    return(
-        <View style={comment.container}>
-            <Text style={comment.user}>{props.username}</Text>
-            <Text style={comment.comment}>{props.comment}</Text>
-            <FlatList
-                style={{marginTop: 5,}}
-                data={props.replies}
-                renderItem={({item}) => <Reply username={item.replyname} reply={item.replycomment}/>}
-                keyExtractor={item => item.replyname}
-            />
-        </View>
-    )
+const COLORS = {
+    neutral: "black",
+    active: "red"
 };
+class Comment extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            upvotes: 1,
+            isUpvoted: false,
+            isDownvoted: false,
+        }
+    }
+    upvote() {
+        if (this.state.isUpvoted) {             // cancel upvote
+            this.setState({
+                upvotes: this.state.upvotes - 1,
+                isUpvoted: false,
+                upvoteColor: COLORS.neutral
+            })
+        } else if (this.state.isDownvoted) {    // cancel downvote, upvote
+            this.setState({
+                upvotes: this.state.upvotes + 2,
+                isUpvoted: true,
+                isDownvoted: false,
+                upvoteColor: COLORS.active,
+                downvoteColor: COLORS.neutral
+            })
+        } else {                                // upvote
+            this.setState({
+                upvotes: this.state.upvotes + 1,
+                isUpvoted: true,
+                upvoteColor: COLORS.active
+            })
+        }
+    }
+    downvote() {
+        if (this.state.isDownvoted) {           // cancel downvote
+            this.setState({
+                upvotes: this.state.upvotes + 1,
+                isDownvoted: false,
+                downvoteColor: COLORS.neutral,
+            })
+        } else if (this.state.isUpvoted) {      // cancel upvote, downvote
+            this.setState({
+                upvotes: this.state.upvotes - 2,
+                isUpvoted: false,
+                isDownvoted: true,
+                upvoteColor: COLORS.neutral,
+                downvoteColor: COLORS.active,
+            })
+        } else {                                // downvote
+            this.setState({
+                upvotes: this.state.upvotes - 1,
+                isDownvoted: true,
+                downvoteColor: COLORS.active,
+            })
+        }
+    }
 
-const comment = StyleSheet.create({
-    container: {
-        padding: 5,
-        marginVertical: 5,
-        borderRadius: 3,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    },
-    user: {
-        fontSize:13,
-        fontWeight: "800",
-    },
-    comment: {
+    render() {
+        return (
+            <View style={comment.container}>
+                <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+                    <Text style={comment.user}>{this.props.username}</Text>
+                    <View style={{marginLeft: 10, flexDirection: "row", alignItems: "center"}}>
 
-    },
-});
+                        <TouchableOpacity
+                            onPress={() => this.upvote()}>
+                            <IconFA
+                                name="arrow-up"
+                                size={15}
+                                color={this.state.upvoteColor}/>
+                        </TouchableOpacity>
+
+                        <Text style={{marginHorizontal: 3}}>{this.state.upvotes}</Text>
+
+                        <TouchableOpacity
+                            onPress={() => this.downvote()}>
+                            <IconFA
+                                name="arrow-down"
+                                size={15}
+                                color={this.state.downvoteColor}/>
+                        </TouchableOpacity>
+
+                    </View>
+                </View>
+                <Text style={comment.comment}>{this.props.comment}</Text>
+                <FlatList
+                    style={{marginTop: 5,}}
+                    data={this.props.replies}
+                    renderItem={({item}) => <Reply username={item.replyname} reply={item.replycomment}/>}
+                    keyExtractor={item => item.replyname}
+                />
+            </View>
+        )
+    }
+}
 
 const CommentSection = () => {
     return(
@@ -134,4 +210,20 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontWeight: "bold",
     }
+});
+
+const comment = StyleSheet.create({
+    container: {
+        padding: 5,
+        marginVertical: 5,
+        borderRadius: 3,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    },
+    user: {
+        fontSize:13,
+        fontWeight: "800",
+    },
+    comment: {
+
+    },
 });
