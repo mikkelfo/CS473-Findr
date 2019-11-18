@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
-import {
-    View,
-    StyleSheet,
-    Text,
-    StatusBar,
-    FlatList,
-    ScrollView,
-    TouchableOpacity
-} from "react-native";
+import {FlatList, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 
 const comments = [
@@ -35,6 +27,40 @@ const comments = [
         ],
     },
 ];
+// TODO: Add action functions: reply() and report()
+const Actions = () => {
+    return (
+        <View style={actions.container}>
+            <TouchableOpacity
+                onPress={() => alert("reply")}>
+                <Text style={actions.text}>reply</Text>
+            </TouchableOpacity>
+            <Text style={actions.divider}>|</Text>
+            <TouchableOpacity
+                onPress={() => alert("report")}>
+                <Text style={actions.text}>report</Text>
+            </TouchableOpacity>
+        </View>
+    )
+};
+
+const actions = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: "row",
+    },
+    text: {
+        color: "#333",
+        marginHorizontal: 2,
+        fontSize: 12,
+    },
+    divider: {
+        color: "#333",
+        marginHorizontal: 2,
+        fontSize: 10,
+        marginTop: 1,
+    }
+});
 
 const Reply = props => {
     return(
@@ -48,6 +74,8 @@ const COLORS = {
     neutral: "black",
     active: "red"
 };
+// TODO: Add user profile overlay, line 148
+// TODO: Hook this up to props attribute OP_picked, line 167
 class Comment extends Component {
     constructor (props) {
         super(props);
@@ -55,6 +83,7 @@ class Comment extends Component {
             upvotes: 1,
             isUpvoted: false,
             isDownvoted: false,
+            isPicked: false,
         }
     }
     upvote() {
@@ -108,30 +137,31 @@ class Comment extends Component {
         return (
             <View style={comment.container}>
                 <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
-                    <Text style={comment.user}>{this.props.username}</Text>
-                    <View style={{marginLeft: 10, flexDirection: "row", alignItems: "center"}}>
+                    <TouchableOpacity
+                        onPress={() => alert(this.props.username)}>
+                        <Text style={comment.user}>{this.props.username}</Text>
+                    </TouchableOpacity>
+                    <View style={{marginHorizontal: 10, flexDirection: "row", alignItems: "center"}}>
 
                         <TouchableOpacity
                             onPress={() => this.upvote()}>
-                            <IconFA
-                                name="arrow-up"
-                                size={15}
-                                color={this.state.upvoteColor}/>
+                            <IconFA name="arrow-up" size={15} color={this.state.upvoteColor}/>
                         </TouchableOpacity>
 
-                        <Text style={{marginHorizontal: 3}}>{this.state.upvotes}</Text>
+                        <Text style={{marginHorizontal: 2}}>{this.state.upvotes}</Text>
 
                         <TouchableOpacity
                             onPress={() => this.downvote()}>
-                            <IconFA
-                                name="arrow-down"
-                                size={15}
-                                color={this.state.downvoteColor}/>
+                            <IconFA name="arrow-down" size={15} color={this.state.downvoteColor}/>
                         </TouchableOpacity>
 
                     </View>
+                    {this.state.isPicked && <IconFA name="check" color="green" size={15}/>}
                 </View>
                 <Text style={comment.comment}>{this.props.comment}</Text>
+
+                <Actions/>
+
                 <FlatList
                     style={{marginTop: 5,}}
                     data={this.props.replies}
@@ -222,8 +252,5 @@ const comment = StyleSheet.create({
     user: {
         fontSize:13,
         fontWeight: "800",
-    },
-    comment: {
-
     },
 });
