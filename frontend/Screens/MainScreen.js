@@ -1,7 +1,6 @@
-import React, {Component}from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, View} from "react-native";
 import Header from "../Components/Header";
-import ActionBar from "../Components/ActionBar";
 import Swiper from "../Components/Swiper";
 
 export default class MainScreen extends Component {
@@ -9,9 +8,7 @@ export default class MainScreen extends Component {
         return (
             <View style={styles.container}>
                 <Header navigation={this.props.navigation}/>
-                {/*<View style={{flex:1, backgroundColor:"grey", alignSelf:'stretch', margin:20}}/>*/}
                 <Swiper/>
-                <ActionBar/>
             </View>
         );
     }

@@ -18,7 +18,7 @@ const MainNavigator = createStackNavigator(
         FullPic: {screen: FullScreenPicture}
     },
     {
-        initialRouteName: 'Bookmark',
+        initialRouteName: 'Main',
         transitionConfig: () => fadeIn(),
         defaultNavigationOptions: {header: null},
     },

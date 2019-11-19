@@ -1,26 +1,38 @@
 import React from 'react';
-import {View, StyleSheet, TouchableHighlight} from "react-native";
+import {StyleSheet, TouchableHighlight, View} from "react-native";
+import IconFA from "react-native-vector-icons/FontAwesome";
 
-const ActionBar = () => {
+const ActionBar = props => {
     return (
         <View style={styles.actionbar}>
-            <Circle style={styles.circle} action="skip"/>
-            <Circle style={styles.circle} action="favorite"/>
-            <Circle style={styles.circle} action="like"/>
+            <TouchableHighlight
+                onPress={() => alert(props.action)}>
+                <Circle icon="skip"/>
+            </TouchableHighlight>
+            <TouchableHighlight
+                onPress={() => alert(props.action)}>
+                <Circle icon="favorite"/>
+            </TouchableHighlight>
+            <TouchableHighlight
+                onPress={() => alert(props.action)}>
+                <Circle icon="like"/>
+            </TouchableHighlight>
         </View>
     )
 };
 
 const Circle = props => {
     return (
-        <TouchableHighlight
-            onPress={() => alert(props.action)}>
-            <View style={styles.circle}/>
-        </TouchableHighlight>
+        <View style={styles.circle}>
+            <View style={{height: 65, width: 65,alignItems: "center", justifyContent: "center"}}>
+                <IconFA size={45} name={props.icon}/>
+            </View>
+        </View>
     )
 };
 
 export default ActionBar;
+export {Circle};
 
 const styles = StyleSheet.create({
     actionbar: {
