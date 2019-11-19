@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {FlatList, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
+import {Overlay} from "react-native-elements";
+import UserInfo from "./UserInfo";
 
 const comments = [
     {   username: "user1",
@@ -70,10 +72,7 @@ const Reply = props => {
         </View>
     )
 };
-const COLORS = {
-    neutral: "black",
-    active: "red"
-};
+
 // TODO: Add user profile overlay, line 148
 // TODO: Hook this up to props attribute OP_picked, line 167
 class Comment extends Component {
@@ -84,6 +83,7 @@ class Comment extends Component {
             isUpvoted: false,
             isDownvoted: false,
             isPicked: false,
+            isVisible: false,
         }
     }
     upvote() {
@@ -91,21 +91,17 @@ class Comment extends Component {
             this.setState({
                 upvotes: this.state.upvotes - 1,
                 isUpvoted: false,
-                upvoteColor: COLORS.neutral
             })
         } else if (this.state.isDownvoted) {    // cancel downvote, upvote
             this.setState({
                 upvotes: this.state.upvotes + 2,
                 isUpvoted: true,
                 isDownvoted: false,
-                upvoteColor: COLORS.active,
-                downvoteColor: COLORS.neutral
             })
         } else {                                // upvote
             this.setState({
                 upvotes: this.state.upvotes + 1,
                 isUpvoted: true,
-                upvoteColor: COLORS.active
             })
         }
     }
@@ -114,45 +110,45 @@ class Comment extends Component {
             this.setState({
                 upvotes: this.state.upvotes + 1,
                 isDownvoted: false,
-                downvoteColor: COLORS.neutral,
             })
         } else if (this.state.isUpvoted) {      // cancel upvote, downvote
             this.setState({
                 upvotes: this.state.upvotes - 2,
                 isUpvoted: false,
                 isDownvoted: true,
-                upvoteColor: COLORS.neutral,
-                downvoteColor: COLORS.active,
             })
         } else {                                // downvote
             this.setState({
                 upvotes: this.state.upvotes - 1,
                 isDownvoted: true,
-                downvoteColor: COLORS.active,
             })
         }
     }
 
     render() {
+        const COLORS = {
+            neutral: "black",
+            active: "red"
+        };
         return (
             <View style={comment.container}>
                 <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
                     <TouchableOpacity
-                        onPress={() => alert(this.props.username)}>
+                        onPress={() => this.setState({ isVisible: true })}>
                         <Text style={comment.user}>{this.props.username}</Text>
                     </TouchableOpacity>
                     <View style={{marginHorizontal: 10, flexDirection: "row", alignItems: "center"}}>
 
                         <TouchableOpacity
                             onPress={() => this.upvote()}>
-                            <IconFA name="arrow-up" size={15} color={this.state.upvoteColor}/>
+                            <IconFA name="arrow-up" size={15} color={this.state.isUpvoted ? COLORS.active : COLORS.neutral}/>
                         </TouchableOpacity>
 
                         <Text style={{marginHorizontal: 2}}>{this.state.upvotes}</Text>
 
                         <TouchableOpacity
                             onPress={() => this.downvote()}>
-                            <IconFA name="arrow-down" size={15} color={this.state.downvoteColor}/>
+                            <IconFA name="arrow-down" size={15} color={this.state.isDownvoted ? COLORS.active : COLORS.neutral}/>
                         </TouchableOpacity>
 
                     </View>
@@ -168,6 +164,14 @@ class Comment extends Component {
                     renderItem={({item}) => <Reply username={item.replyname} reply={item.replycomment}/>}
                     keyExtractor={item => item.replyname}
                 />
+                <Overlay
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                    width="auto"
+                    height="auto"
+                >
+                    <UserInfo username={this.props.username}/>
+                </Overlay>
             </View>
         )
     }
