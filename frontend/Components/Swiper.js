@@ -44,15 +44,15 @@ export default class Swiper extends Component {
                 <View style={styles.actionbar}>
                     <TouchableHighlight
                         onPress={() => this.swiper.swipeLeft()}>
-                        <Circle icon="star"/>
+                        <Circle icon="times" regular/>
                     </TouchableHighlight>
                     <TouchableHighlight
                         onPress={() => this.swiper.swipeTop()}>
-                        <Circle icon="star"/>
+                        <Circle icon="heart"/>
                     </TouchableHighlight>
                     <TouchableHighlight
                         onPress={() => this.swiper.swipeRight()}>
-                        <Circle icon="star"/>
+                        <Circle icon ="comment-dots"/>
                     </TouchableHighlight>
                 </View>
             </View>

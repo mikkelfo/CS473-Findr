@@ -2,15 +2,17 @@ import React, {Component} from "react";
 import {StyleSheet, View, TouchableOpacity} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconO from 'react-native-vector-icons/Octicons';
+import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import Constants from 'expo-constants';
 import {DrawerActions} from "react-navigation-drawer";
+
 
 
 
 class Header extends Component {
     render() {
         const def = "black";
-        const current = "orange";
+        const current = "#ffba00";
 
         this.state = {
             Main: def,
@@ -28,10 +30,11 @@ class Header extends Component {
             <View style={styles.header}>
                 <TouchableOpacity>
                     <View style={styles.square}>
-                        <IconFA
+                        <Icon5
                             name="user-circle"
-                            size={60}
-                            color={this.state.Profile}
+                            regular
+                            size={50}
+                            color={this.state.Discovery}
                             onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
                         />
                     </View>
@@ -40,7 +43,7 @@ class Header extends Component {
                     <View style={styles.square}>
                         <IconFA
                             name="home"
-                            size={60}
+                            size={50}
                             color={this.state.Main}
                             onPress={() => navigate('Main')}
                         />
@@ -48,9 +51,10 @@ class Header extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.square}>
-                        <IconO
-                            name="flame"
-                            size={60}
+                        <Icon5
+                            name="compass"
+                            regular
+                            size={50}
                             color={this.state.Discovery}
                             onPress={() => navigate('Discovery')}
                         />
