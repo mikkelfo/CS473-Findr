@@ -1,17 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableNativeFeedback} from "react-native";
+import {View, Text, StyleSheet, Image, TouchableNativeFeedback, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 
 const Link = props => {
     return (
-        <TouchableNativeFeedback
+        <TouchableOpacity
             onPress={() => props.navigation.navigate(props.nav)}>
             <View style={styles.link}>
                 <IconFA name={props.name} size={20} style="regular"/>
                 <Text style={{fontSize: 18, marginLeft:10}}>{props.title}</Text>
             </View>
-        </TouchableNativeFeedback>
+        </TouchableOpacity>
     )
 };
 

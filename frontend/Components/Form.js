@@ -12,7 +12,6 @@ export default class Form extends Component {
             password: ''
         }
     }
-
     saveData =async()=>{
         const {nickname,password} = this.state;
 
@@ -21,14 +20,15 @@ export default class Form extends Component {
             nickname: nickname,
             password: password
         }
-
+        alert(nickname)
         if(this.props.type !== 'Login')
         {
             AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
 
             Keyboard.dismiss();
-            alert("You successfully registered. Nickname: " + nickname + ' password: ' + password);
-            this.login();
+            alert("You successfully registered. \n Nickname: " + nickname + ' password: ' + password + ' \n PS: Shall we even show the password etc. ?');
+            alert("navigate to main")
+
         }
         else if(this.props.type == 'Login')
         {
@@ -41,7 +41,11 @@ export default class Form extends Component {
                     if (ld.nickname == nickname && ld.password == password)
                     {
                         alert('Go in!');
+                        check = 1
                     }
+                    // TODO: remove this hardcoded
+                    if (nickname == 'user' && password == 'user') {
+                        navigation.navigate('Main');}
                     else
                     {
                         alert('Nickname and Password does not exist!');
@@ -81,7 +85,6 @@ export default class Form extends Component {
                 placeholderTextColor = "#002f6c"
                 ref={(input) => this.password = input}
                 />
-
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText} onPress={this.saveData}>{this.props.type}</Text>
                 </TouchableOpacity>

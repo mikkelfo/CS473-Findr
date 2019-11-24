@@ -6,11 +6,6 @@ import {Actions} from 'react-native-router-flux';
 import Form from '../Components/Form';
 
 export default class Login extends Component {
-
-    signup() {
-        Actions.signup()
-    }
-
     render() {
         const {navigate} = this.props.navigation;
         return(
@@ -25,6 +20,7 @@ export default class Login extends Component {
             </View>
         )
     }
+
 }
 
 const styles = StyleSheet.create({

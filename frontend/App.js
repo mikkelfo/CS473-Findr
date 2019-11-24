@@ -9,28 +9,58 @@ import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
 import {fadeIn} from "react-navigation-transitions";
 import FullScreenPicture from "./Components/FullScreenPicture";
+import LoginScreen from "./Screens/LoginScreen";
+import SignupScreen from "./Screens/SignupScreen";
+import {createSwitchNavigator} from 'react-navigation'
 
 const MainNavigator = createStackNavigator(
     {
+        Login: { screen: LoginScreen},
+        Signup: { screen:  SignupScreen},
         Main: {screen: MainScreen},
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},
-        FullPic: {screen: FullScreenPicture}
+        FullPic: {screen: FullScreenPicture},
     },
     {
-        initialRouteName: 'Main',
+        initialRouteName: 'Login',
         transitionConfig: () => fadeIn(),
         defaultNavigationOptions: {header: null},
     },
 );
 
-const AppDrawerNavigator = createDrawerNavigator({
-    Main: MainNavigator,
-}, {
-    contentComponent: SideMenu,
-    drawerWidth: 225,
-});
+const AppDrawerNavigator = createDrawerNavigator(
+    {
+        Main: MainNavigator,
+    },
+    {
+        contentComponent: SideMenu,
+        drawerWidth: 225,
+    }
+);
+/*
 
-const App = createAppContainer(AppDrawerNavigator);
+const AuthNavigator = createStackNavigator(
+  {
+    Login: { screen: LoginScreen},
+    Signup: { screen:  SignupScreen}
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none'
+  }
+);
+
+
+const switchNavigator = createSwitchNavigator(
+  {
+      Auth: AuthNavigator,
+      MainApp: MainNavigator,
+  },
+  { headerMode: "none", initialRouteName: "Auth" }
+);
+*/
+const App = createAppContainer(MainNavigator);
 
 export default App;
+
