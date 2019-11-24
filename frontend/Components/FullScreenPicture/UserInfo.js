@@ -7,9 +7,15 @@ import IconFA from "react-native-vector-icons/FontAwesome";
 // fetchAvatar(Username) -> Avatar
 const UserInfo = props => {
     const encodedValue = encodeURIComponent(props.username);
-    fetch(`localhost:8088/api/v1/user/getUserInfo/${encodedValue}`)
-        .then(r => console.log(r));
-    const rep = 10;
+    const [reputation, onChange] = React.useState(-1);
+    fetch(`http://192.168.0.9:8088/api/v1/user/getUserInfo/user2`,
+        {method: 'GET',
+        })
+        .then(r => {return r.json()})
+        .then(r => onChange(r.reputation))
+        .catch(e => console.log(e));
+
+
     return (
         <View style={styles.container}>
             <View style={styles.avatar}>
@@ -18,7 +24,7 @@ const UserInfo = props => {
             <View style={styles.textContainer}>
                 <Text style={[styles.props, {textAlign: "right"}]}>{props.username}</Text>
                 <Text style={{marginHorizontal: 5}}>|</Text>
-                <Text style={[styles.props, {textAlign: "left"}]}>{rep}</Text>
+                <Text style={[styles.props, {textAlign: "left"}]}>{reputation}</Text>
             </View>
         </View>
     )
