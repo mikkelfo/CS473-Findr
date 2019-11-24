@@ -5,7 +5,7 @@ const Thumbnail = props => {
     return (
         <TouchableOpacity onPress={() => selectPicture(props)}>
             <View style={props.style}>
-                <Text style={{justifyContent: "center", alignItems: "center",}}>{props.src}</Text>
+                <Text style={{justifyContent: "center", alignItems: "center",}}>{props.id}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -13,7 +13,7 @@ const Thumbnail = props => {
 
 function selectPicture(props) {
     props.navigation.navigate("FullPic", {
-        src: props.src,
+        id: props.id,
     });
 }
 

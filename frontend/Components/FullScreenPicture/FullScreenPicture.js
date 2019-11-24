@@ -1,27 +1,49 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StatusBar, StyleSheet, Text, View} from "react-native";
 
-import {CommentSection} from "./CommentSection";
+import CommentSection from "./CommentSection";
 
 // TODO: User should be able to favorite a FullScreenPicture
-const FullScreenPicture = props => {
-    const { getParam } = props.navigation;
-    const pic = getParam("styles");
-    const src = getParam("src");
-    return (
-        <View style={styles.container}>
-            <StatusBar hidden />
-            <View style={[pic, styles.background]}/>
-            <View style={styles.textcontainer}>
-                <Text style={styles.title}>{src}</Text>
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem doloribus est fugit nisi odit, officia quaerat quam quidem reprehenderit tempore.</Text>
-            </View>
-            <CommentSection/>
-        </View>
-    )
-};
+export default class FullScreenPicture extends Component {
+    constructor(props) {
+        super(props);
+        const {getParam} = this.props.navigation;
+        const id = getParam("id");
 
-export default FullScreenPicture;
+        this.state = {
+            isLoading: true,
+            data: [],
+            id: id,
+        }
+
+    }
+    componentDidMount() {
+        this.fetchPicture(this.state.id)
+    }
+
+    fetchPicture(postID) {
+        fetch(`http://192.168.0.9:8088/api/v1/post/getPost/${postID}`,
+            {method: 'GET',
+            })
+            .then(response => {return response.json()})
+            .then(response => this.setState({data: response, isLoading: false}))
+            .catch(e => console.log(e));
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar hidden/>
+                <View style={styles.background}/>
+                <View style={styles.textcontainer}>
+                    <Text style={styles.title}>{this.state.data.title}</Text>
+                    <Text style={styles.description}>{this.state.data.description}</Text>
+                </View>
+                <CommentSection id = {this.state.id}/>
+            </View>
+        )
+    }
+};
 
 const styles = StyleSheet.create({
     container: {

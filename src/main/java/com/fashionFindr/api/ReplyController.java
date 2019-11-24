@@ -23,7 +23,7 @@ public class ReplyController {
         replyService.createReply(reply);
     }
 
-    @GetMapping(value = "/getCommentReplies/{commentID}")
+    @GetMapping(value = "getCommentReplies/{commentID}")
     public List<Reply> getCommmentReplies(@PathVariable("commentID") int commentID){
         return replyService.getCommentReplies(commentID);
     }

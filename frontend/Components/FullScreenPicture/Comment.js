@@ -10,6 +10,7 @@ export class Comment extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            data: [],
             upvotes: 1,
             isUpvoted: false,
             isDownvoted: false,
@@ -69,13 +70,24 @@ export class Comment extends Component {
         alert(value)
     }
 
+    componentDidMount() {
+        this.fetchReplies(this.props.id)
+    }
+
+    async fetchReplies(postID) {
+        let replies = await fetch(`http://192.168.0.9:8088/api/v1/reply/getCommentReplies/${postID}`,
+            {method: 'GET',})
+            .then(response => response.json())
+            .catch(e => console.log(e));
+        this.setState({data: replies})
+    }
+
     render() {
         const COLORS = {
             neutral: "black",
             active: "red"
 
         };
-
         return (
             <View style={comment.container}>
                 <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
@@ -122,9 +134,9 @@ export class Comment extends Component {
 
                 <FlatList
                     style={{marginTop: 5,}}
-                    data={this.props.replies}
-                    renderItem={({item}) => <Reply username={item.replyname} reply={item.replycomment}/>}
-                    keyExtractor={item => item.replyname}
+                    data={this.state.data}
+                    renderItem={({item}) => <Reply username={item.username} reply={item.content}/>}
+                    keyExtractor={item => item.replyID.toString()}
                 />
                 <UserOverlay
                     visible = {this.state.isVisible}

@@ -4,8 +4,17 @@ import {Dimensions, StyleSheet, Text, TouchableHighlight, View} from "react-nati
 import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
 import {Circle} from "./ActionBar";
+import {Loading} from "./Loading";
 
 export default class Swiper extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            data: [],
+        }
+    }
     left(index) {
         console.log("Left: " + index)
     }
@@ -15,48 +24,67 @@ export default class Swiper extends Component {
     up(index) {
         console.log("Up: " + index)
     }
+    componentDidMount() {
+        this.fetchCards()
+    }
 
+    fetchCards() {
+        fetch(`http://192.168.0.9:8088/api/v1/post/getSwiperPosts`,
+            {method: 'GET',
+            })
+            .then(response => {return response.json()})
+            .then(response => this.setState({data: response, isLoading: false}))
+            .catch(e => console.log(e));
+    }
     renderCards() {
-        return photoCards.map((item) => {
+        return this.state.data.map((item) => {
             return(
-                <Card style={[styles.card]} key={item.key}>
+                <Card style={[styles.card]} key={item.postID}>
                     <View style={styles.textcontainer}>
-                        <Text style={styles.title}>{item.name}</Text>
-                        <Text style={styles.description}>{item.key}</Text>
+                        <Text style={styles.title}>{item.username}</Text>
+                        <Text style={styles.description}>{item.description}</Text>
                     </View>
                 </Card>
         )}
     )}
     render() {
-        return(
-            <View style={{flex:1, alignSelf: "stretch",}}>
-                <CardStack
-                    style={styles.container}
-                    ref={swiper => {this.swiper = swiper }}
-                    disableBottomSwipe={true}
-                    onSwipedLeft={i => this.left(i)}
-                    onSwipedRight={i => this.right(i)}
-                    onSwipedTop={i => this.up(i)}
-                    onSwipedAll={() => alert("Render more cards")}
-                >
-                    {this.renderCards()}
-                </CardStack>
-                <View style={styles.actionbar}>
-                    <TouchableHighlight
-                        onPress={() => this.swiper.swipeLeft()}>
-                        <Circle icon="star"/>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        onPress={() => this.swiper.swipeTop()}>
-                        <Circle icon="star"/>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        onPress={() => this.swiper.swipeRight()}>
-                        <Circle icon="star"/>
-                    </TouchableHighlight>
+        if (this.state.isLoading) {
+            return (
+                <Loading/>
+            )
+        } else {
+            return (
+                <View style={{flex: 1, alignSelf: "stretch",}}>
+                    <CardStack
+                        style={styles.container}
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        disableBottomSwipe={true}
+                        onSwipedLeft={i => this.left(i)}
+                        onSwipedRight={i => this.right(i)}
+                        onSwipedTop={i => this.up(i)}
+                        onSwipedAll={() => alert("Render more cards")}
+                    >
+                        {this.renderCards()}
+                    </CardStack>
+                    <View style={styles.actionbar}>
+                        <TouchableHighlight
+                            onPress={() => this.swiper.swipeLeft()}>
+                            <Circle icon="star"/>
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            onPress={() => this.swiper.swipeTop()}>
+                            <Circle icon="star"/>
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            onPress={() => this.swiper.swipeRight()}>
+                            <Circle icon="star"/>
+                        </TouchableHighlight>
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
     }
 }
 
@@ -103,66 +131,3 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 });
-
-const photoCards = [
-    {
-        name: 'Austin Wade',
-        age: 22,
-        key: 'caseex6qfO4TPMYyhorner',
-    },
-    {
-        name: 'Aleksander Borzenets',
-        age: 28,
-        key: 'ozda-XbeP0k',
-    },
-    {
-        name: 'Don Delfin Espino',
-        age: 29,
-        key: 'nBywXevf_jE-',
-    },
-    {
-        name: 'Eduardo Dutra',
-        age: 30,
-        key: 'ZHy0efLnzVc',
-    },
-    {
-        name: 'Wesley Tingey',
-        age: 21,
-        key: 'TvPCUHten1o',
-    },
-    {
-        name: 'Gift Habeshaw',
-        age: 26,
-        key: 'dlbiYGwEe9U',
-    },
-    {
-        name: 'Henri Pham',
-        age: 30,
-        key: 'Ml4tr2WO7JE',
-    },
-    {
-        name: 'Nico Marks',
-        age: 24,
-        key: 'mFcc5b_t74Q',
-    },
-    {
-        name: 'Sirio',
-        age: 28,
-        key: "Ty4f_NOFO60'",
-    },
-    {
-        name: 'Teymi Townsend',
-        age: 30,
-        key: "AvLHH8qYbAI'",
-    },
-    {
-        name: 'Caique Silva',
-        age: 20,
-        key: "3ujVzg9i2EI'",
-    },
-    {
-        name: 'David Yanutenama',
-        age: 21,
-        key: "5AoO7dBurMw'",
-    },
-];

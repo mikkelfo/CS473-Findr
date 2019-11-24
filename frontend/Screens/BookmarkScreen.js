@@ -11,13 +11,19 @@ export default class BookmarkScreen extends Component {
                 <ScrollView style={styles.body}>
                     <PictureRow
                         title='Questions'
-                        navigation={this.props.navigation}/>
+                        navigation={this.props.navigation}
+                        api = "getUserPosts"
+                    />
                     <PictureRow
                         title='Favorites'
-                        navigation={this.props.navigation}/>
+                        navigation={this.props.navigation}
+                        api = "getUserFavorites"
+                    />
                     <PictureRow
                         title='Matches'
-                        navigation={this.props.navigation}/>
+                        navigation={this.props.navigation}
+                        api = "getUserMatches"
+                    />
                 </ScrollView>
             </View>
         );

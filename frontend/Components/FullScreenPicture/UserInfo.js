@@ -2,19 +2,15 @@ import {StyleSheet, Text, View} from "react-native";
 import React from "react";
 import IconFA from "react-native-vector-icons/FontAwesome";
 
-// TODO: Add reputation fetch (from db)
-// fetchRep(Username) -> Reputation
-// fetchAvatar(Username) -> Avatar
 const UserInfo = props => {
     const encodedValue = encodeURIComponent(props.username);
     const [reputation, onChange] = React.useState(-1);
-    fetch(`http://192.168.0.9:8088/api/v1/user/getUserInfo/user2`,
+    fetch(`http://192.168.0.9:8088/api/v1/user/getUserInfo/${encodedValue}`,
         {method: 'GET',
         })
         .then(r => {return r.json()})
         .then(r => onChange(r.reputation))
         .catch(e => console.log(e));
-
 
     return (
         <View style={styles.container}>
