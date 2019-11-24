@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, Text, TouchableHighlight, View} from "react-native";
+import {Dimensions, StyleSheet, Text, TouchableHighlight, View, TouchableOpacity} from "react-native";
 
 import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
@@ -42,18 +42,18 @@ export default class Swiper extends Component {
                     {this.renderCards()}
                 </CardStack>
                 <View style={styles.actionbar}>
-                    <TouchableHighlight
+                    <TouchableOpacity
                         onPress={() => this.swiper.swipeLeft()}>
                         <Circle icon="times" regular/>
-                    </TouchableHighlight>
-                    <TouchableHighlight
+                    </TouchableOpacity>
+                    <TouchableOpacity
                         onPress={() => this.swiper.swipeTop()}>
                         <Circle icon="heart"/>
-                    </TouchableHighlight>
-                    <TouchableHighlight
+                    </TouchableOpacity>
+                    <TouchableOpacity
                         onPress={() => this.swiper.swipeRight()}>
                         <Circle icon ="comment-dots"/>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

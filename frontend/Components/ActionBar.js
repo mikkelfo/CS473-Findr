@@ -11,10 +11,12 @@ const ActionBar = props => {
                 <Circle icon="skip"/>
             </TouchableHighlight>
             <TouchableHighlight
+            underlayColor='none'
                 onPress={() => alert(props.action)}>
                 <Circle icon="favorite"/>
             </TouchableHighlight>
             <TouchableHighlight
+                underlayColor='none'
                 onPress={() => alert(props.action)}>
                 <Circle icon="like"/>
             </TouchableHighlight>
