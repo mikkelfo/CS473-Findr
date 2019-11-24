@@ -31,36 +31,6 @@ public class UserController {
 
     }
 
-//
-//    @GetMapping
-//    public List<User> getAllUser(){
-//        return userService.getAllUser();
-//    }
-//
-//    @PostMapping("updateReputation")
-//    public void updateReputation(@RequestParam(value = "username") String username, @RequestParam(value = "change_in_reputation")int change_in_reputation){
-//        System.out.println("user service");
-//        System.out.println(username);
-//        userService.updateReputation(username, change_in_reputation);
-//    }
-//
-//    @GetMapping("getUserFavorites")
-//    public List<Post> getUserFavorites(@RequestParam(value = "username") String username){
-//        User user = userService.getUserInfo(username);
-//        return  userService.getUserFavorites(user);
-//    }
-//
-//    @GetMapping("getUserMatches")
-//    public List<Post> getUserMatches(@RequestParam(value = "username") String username){
-//        User user = userService.getUserInfo(username);
-//        return userService.getUserMatches(user);
-//    }
-//
-//    @GetMapping("getUserPost")
-//    public List<Post> getUserPost(@RequestParam(value = "username") String username){
-//        User user = userService.getUserInfo(username);
-//        return userService.getUserPost(user);
-//    }
 
     @GetMapping(value = "getUserInfo/{username}")
     public User getUserInfo(@PathVariable("username") String username){
@@ -78,6 +48,8 @@ public class UserController {
     public void addFavorites(@PathVariable("username") String username, @PathVariable("postID") int postID){
         userService.addUserFavorites(username, postID);
     }
+
+
 
     @GetMapping(value = "/getUserMatches/{username}")
     public List<Post> getUserMatches(@PathVariable("username") String username){

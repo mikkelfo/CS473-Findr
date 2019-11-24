@@ -24,10 +24,7 @@ public class PostService {
         this.userService = userService;
     }
 
-//    public int createPost(Post post){
-//        return postDao.createPost(post.getPostID(), post.getUser(),post.getTitle(), post.getImageSrc(), post.getDescription(), post.getCorrectlyAnswered());
-//
-//    }
+
     public Post createPost(Post post){
         int current_number_of_posts = postDao.findAll().size();
         post.setPostID(current_number_of_posts+1);
@@ -61,37 +58,5 @@ public class PostService {
         }
     }
 
-//    public List<Post> getUnansweredPosts(){
-//        return postDao.getUnansweredPosts();
-//    }
-//
-//    public List<Post> getTrendingPosts(){
-//        return postDao.getTrendingPosts();
-//    }
-//
-//    public Post getPostInfo(String postID){
-//        return postDao.getPostInfo(postID);
-//    }
-//
-//    public List<Comment> getComments(String postID){
-//        return commentDao.getComments(postID);
-//    }
-
-//    public List<Post> selectAll_AnsweredPost(){
-//        return postDao.selectAll_AnsweredPost();
-//
-//    }
-//    public List<Post> selectAll_UnansweredPost() {
-//        return postDao.selectAll_UnansweredPost();
-//
-//    }
-//
-//    public List<Post> selectAllPost() {
-//        return postDao.selectAllPost();
-//    }
-//
-//    public int updateAnswer_Status(String post_ID, int answer_status) {
-//        return postDao.updateAnswer_Status(post_ID, answer_status);
-//    }
 
 }
