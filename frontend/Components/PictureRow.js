@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {FlatList, Text, View, StyleSheet, Image, TouchableOpacity} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Thumbnail from "./Thumbnail";
 
 // TODO: Load data (pictures) from database
 const DATA = [
     {
         id: 'id1',
-        src: 'image1.png',
+        src: 'image11111111111111111.png',
     }, {
         id: 'id2',
         src: 'image2.png',
@@ -58,7 +58,7 @@ export default class PictureRow extends Component {
                     numColumns={this.state.columns}
                     showsHorizontalScrollIndicator={false}
                     data={DATA}
-                    renderItem={({item}) => <Thumbnail src={item.src} id={item.id} navigation={this.props.navigation}/>}
+                    renderItem={({item}) => <Thumbnail style={styles.pic} src={item.src} id={item.id} navigation={this.props.navigation}/>}
                     keyExtractor={item => item.id}
                     key={this.state.horizontal}
                 />
@@ -77,5 +77,14 @@ const styles = StyleSheet.create({
         marginBottom:10,
         color: "black",
     },
+    pic: {
+        backgroundColor: '#f97777',
+        width: 100,
+        height: 100,
+        borderRadius: 3,
+        marginRight: 20,
+        marginBottom: 20,
+    },
+
 });
 

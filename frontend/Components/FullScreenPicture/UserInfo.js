@@ -6,6 +6,9 @@ import IconFA from "react-native-vector-icons/FontAwesome";
 // fetchRep(Username) -> Reputation
 // fetchAvatar(Username) -> Avatar
 const UserInfo = props => {
+    const encodedValue = encodeURIComponent(props.username);
+    fetch(`localhost:8088/api/v1/user/getUserInfo/${encodedValue}`)
+        .then(r => console.log(r));
     const rep = 10;
     return (
         <View style={styles.container}>

@@ -1,4 +1,4 @@
-import React, {Component}from 'react';
+import React, {Component} from 'react';
 import {ScrollView, StyleSheet, View} from "react-native";
 import Header from "../Components/Header";
 import PictureRow from "../Components/PictureRow";
@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: 'center',
         alignSelf: 'stretch',
-        marginHorizontal: 10,
     },
     body: {
         flex: 1,
         alignSelf: 'stretch',
+        marginHorizontal: 10,
     },
 
 });

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {FlatList, Text, View, StyleSheet, Image, TouchableOpacity, Dimensions} from "react-native";
+import {Dimensions, FlatList, StyleSheet, Text, View} from "react-native";
 import Header from "../Components/Header";
+import Thumbnail from "../Components/Thumbnail";
 
 // TODO: Load data (pictures) from database
 let DATA = [
@@ -8,13 +9,6 @@ let DATA = [
     {id: "a"}, {id: "b"}, {id: "c"}, {id: "d"}, {id: "e"}, {id: "f"}, {id: "g"}, {id: "h"}, {id: "i"}, {id: "j"}
 ];
 
-const Picture = props => {
-    return (
-        <TouchableOpacity onPress={() => alert(props.id)}>
-            <Image style={styles.pic}/>
-        </TouchableOpacity>
-    );
-};
 const numColumns = 3;
 const {height, width} = Dimensions.get("window");
 
@@ -39,7 +33,7 @@ class DiscoveryScreen extends Component {
                     showsVerticalScrollIndicator={false}
                     data={this.state.data}
                     numColumns={numColumns}
-                    renderItem={({item}) => <Picture id={item.id}/>}
+                    renderItem={({item}) => <Thumbnail style={styles.pic} src={item.src} id={item.id} navigation={this.props.navigation}/>}
                     keyExtractor={item => item.id}
                     />
             </View>
@@ -49,9 +43,10 @@ class DiscoveryScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        marginVertical: 10,
         alignItems: "center",
         // TODO: Fix this hack
-        height: height + width/3 + 125,
+        height: height + width/3 + 110,
     },
     pic: {
         backgroundColor: '#f97777',

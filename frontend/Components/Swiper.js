@@ -20,8 +20,9 @@ export default class Swiper extends Component {
         return photoCards.map((item) => {
             return(
                 <Card style={[styles.card]} key={item.key}>
-                    <View>
-                        <Text style={styles.text}>{item.name}</Text>
+                    <View style={styles.textcontainer}>
+                        <Text style={styles.title}>{item.name}</Text>
+                        <Text style={styles.description}>{item.key}</Text>
                     </View>
                 </Card>
         )}
@@ -36,6 +37,7 @@ export default class Swiper extends Component {
                     onSwipedLeft={i => this.left(i)}
                     onSwipedRight={i => this.right(i)}
                     onSwipedTop={i => this.up(i)}
+                    onSwipedAll={() => alert("Render more cards")}
                 >
                     {this.renderCards()}
                 </CardStack>
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     card: {
-        height: height - (Constants.statusBarHeight + 80 + 65 + 40),
+        height: height - (Constants.statusBarHeight + 80 + 65 + 40 + 10),
         width: width - 40,
         borderRadius: 4,
         borderWidth: 2,
@@ -87,6 +89,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center",
         padding: 25,
+    },
+    textcontainer: {
+        flex: 1,
+        padding: 10,
+    },
+    title: {
+        fontSize: 40,
+        flex: 1,
+    },
+    description: {
+        fontSize: 15,
+        marginTop: 20,
     },
 });
 
