@@ -12,11 +12,24 @@ import java.util.List;
 @RestController
 public class UserController {
     private final UserService userService;
+    private User currentUser;
 
     @Autowired
 //    spring boot injects the actual service into this constructor
     public UserController(UserService userService) {
         this.userService = userService;
+        this.currentUser = null;
+    }
+
+    @GetMapping("login/{username}/{password}")
+    public User handleLogin(@PathVariable("username") String username, @PathVariable("password") String password){
+        currentUser = userService.handleLogin(username, password);
+        return currentUser;
+    }
+
+    @GetMapping("currentUser")
+    public User getCurrentUser(){
+        return currentUser;
     }
 
     @PostMapping("user")

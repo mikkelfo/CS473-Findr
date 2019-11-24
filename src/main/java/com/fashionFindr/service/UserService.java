@@ -90,4 +90,14 @@ public class UserService {
         }
         return userPostsPosts;
     }
+
+    public User handleLogin(String username, String password){
+        User user = getUserInfo(username);
+        if (user.getPassword().equals(password)){
+            return user;
+        } else {
+            System.out.println("Incorrect password");
+            return null;
+        }
+    }
 }
