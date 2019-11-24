@@ -31,5 +31,12 @@ public class CommentService {
         commentDao.save(comment);
     }
 
+    public Comment getCommentByID(int commentID){
+        return commentDao.findByCommentID(commentID);
+
+    }
+
+
+
 
 }

@@ -32,6 +32,13 @@ public class CommentController {
         userService.addUserMatches(comment.getUsername(), comment.getPostID());
     }
 
+    @PostMapping("upvoteComment/{commentID}")
+    public void upvoteComment(@PathVariable(value = "commentID") int commentID){
+        Comment comment = commentService.getCommentByID(commentID);
+        comment.setUpvote(comment.getUpvote()+1);
+        commentService.updateOrSaveComment(comment);
+    }
+
 
 
 }
