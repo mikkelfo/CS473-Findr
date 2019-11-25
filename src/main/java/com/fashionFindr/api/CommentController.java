@@ -29,7 +29,7 @@ public class CommentController {
         return commentService.getPostComments(postID);
     }
 
-    @PostMapping("comment")
+    @PostMapping("/comment")
     public void addComment(@RequestBody Comment comment){
         commentService.create(comment);
         userService.addUserMatches(comment.getUsername(), comment.getPostID());
@@ -39,6 +39,13 @@ public class CommentController {
     public void upvoteComment(@PathVariable(value = "commentID") int commentID){
         Comment comment = commentService.getCommentByID(commentID);
         comment.setUpvote(comment.getUpvote()+1);
+        commentService.updateOrSaveComment(comment);
+    }
+
+    @PostMapping("downvoteComment/{commentID}")
+    public void downvoteComment(@PathVariable(value = "commentID") int commentID){
+        Comment comment = commentService.getCommentByID(commentID);
+        comment.setUpvote(comment.getUpvote()-1);
         commentService.updateOrSaveComment(comment);
     }
 

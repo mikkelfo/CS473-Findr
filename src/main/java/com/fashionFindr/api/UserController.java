@@ -27,9 +27,14 @@ public class UserController {
         return currentUser;
     }
 
+//    @GetMapping("currentUser")
+//    public User getCurrentUser(){
+//        return currentUser;
+//    }
+
     @GetMapping("currentUser")
-    public User getCurrentUser(){
-        return currentUser;
+    public String getCurrentUser(){
+        return currentUser.getUsername();
     }
 
     @PostMapping("user")
@@ -45,7 +50,7 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "getUserInfo/{username}")
+    @GetMapping(value = "/getUserInfo/{username}")
     public User getUserInfo(@PathVariable("username") String username){
         System.out.println("getuserinfo user controller");
         return userService.getUserInfo(username);
@@ -64,12 +69,12 @@ public class UserController {
 
 
 
-    @GetMapping(value = "/getUserMatches/{username}")
+    @GetMapping(value = "getUserMatches/{username}")
     public List<Post> getUserMatches(@PathVariable("username") String username){
         return userService.getUserMatches(username);
     }
 
-    @GetMapping(value = "/getUserPosts/{username}")
+    @GetMapping(value = "getUserPosts/{username}")
     public List<Post> getUserPosts(@PathVariable("username") String username){
         return userService.getUserPosts(username);
     }

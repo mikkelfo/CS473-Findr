@@ -4,8 +4,8 @@ import {Text, TouchableOpacity, View} from "react-native";
 const Thumbnail = props => {
     return (
         <TouchableOpacity onPress={() => selectPicture(props)}>
-            <View style={props.style}>
-                <Text style={{justifyContent: "center", alignItems: "center",}}>{props.id}</Text>
+            <View style={[props.style, {alignItems:"center", justifyContent:"center"}]}>
+                <Text>{props.id}</Text>
             </View>
         </TouchableOpacity>
     );

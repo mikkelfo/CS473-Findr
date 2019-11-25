@@ -8,7 +8,7 @@ export default class MainScreen extends Component {
         return (
             <View style={styles.container}>
                 <Header navigation={this.props.navigation}/>
-                <Swiper/>
+                <Swiper navigation={this.props.navigation}/>
             </View>
         );
     }

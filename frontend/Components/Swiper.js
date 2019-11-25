@@ -16,13 +16,30 @@ export default class Swiper extends Component {
         }
     }
     left(index) {
-        console.log("Left: " + index)
+        // TODO: Add something here?
     }
-    right(index ) {
-        console.log("Right: " + index)
+    async right(index) {
+        // TODO: Get current user
+        const username = "user2";
+        const encodedValue = encodeURIComponent(username);
+        const postID = this.state.data[index].postID;
+        fetch(`http://192.168.0.9:8088/api/v1/user/addFavorites/${encodedValue}/${postID}`,{
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify( {
+                "username": username,
+                "postID": postID
+            })})
+            .catch(error => console.log("Error:",error))
     }
     up(index) {
-        console.log("Up: " + index)
+        const postID = this.state.data[index].postID;
+        this.props.navigation.navigate("FullPic", {
+            id: postID
+        });
     }
     componentDidMount() {
         this.fetchCards()

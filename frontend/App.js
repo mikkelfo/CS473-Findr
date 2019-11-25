@@ -8,10 +8,9 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
 import {fadeIn} from "react-navigation-transitions";
-import FullScreenPicture from "./Components/FullScreenPicture";
+import FullScreenPicture from "./Components/FullScreenPicture/FullScreenPicture";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
-import {createSwitchNavigator} from 'react-navigation'
 
 const MainNavigator = createStackNavigator(
     {
@@ -23,7 +22,7 @@ const MainNavigator = createStackNavigator(
         FullPic: {screen: FullScreenPicture},
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Main',
         transitionConfig: () => fadeIn(),
         defaultNavigationOptions: {header: null},
     },
@@ -60,7 +59,7 @@ const switchNavigator = createSwitchNavigator(
   { headerMode: "none", initialRouteName: "Auth" }
 );
 */
-const App = createAppContainer(MainNavigator);
+const App = createAppContainer(AppDrawerNavigator);
 
 export default App;
 
