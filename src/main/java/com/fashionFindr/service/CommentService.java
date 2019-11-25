@@ -31,5 +31,18 @@ public class CommentService {
         commentDao.save(comment);
     }
 
+    public Comment getCommentByID(int commentID){
+        return commentDao.findByCommentID(commentID);
+
+    }
+
+    public void updateChosenByOP(int commentID){
+        Comment comment = commentDao.findByCommentID(commentID);
+        comment.setChosenByOP(1);
+        commentDao.save(comment);
+    }
+
+
+
 
 }

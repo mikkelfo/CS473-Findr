@@ -72,4 +72,8 @@ public class Comment {
     public void setUpvote(int newUpvote){
         upvote = newUpvote;
     }
+
+    public void setChosenByOP(int newChosenByOP){
+        chosenByOP = newChosenByOP;
+    }
 }

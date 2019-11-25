@@ -10,4 +10,5 @@ public interface CommentDao extends MongoRepository<Comment, String> {
 
 //    @Override
     List<Comment> findAllByPostID(int postID);
+    Comment findByCommentID(int commentID);
 }
