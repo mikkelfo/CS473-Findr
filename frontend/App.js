@@ -4,6 +4,7 @@ import {createAppContainer} from 'react-navigation';
 import MainScreen from "./Screens/MainScreen";
 import BookmarkScreen from "./Screens/BookmarkScreen";
 import DiscoveryScreen from "./Screens/DiscoveryScreen";
+import UploadScreen from "./Screens/UploadScreen";
 import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
@@ -15,6 +16,7 @@ const MainNavigator = createStackNavigator(
         Main: {screen: MainScreen},
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},
+        Upload: {screen: UploadScreen},
         FullPic: {screen: FullScreenPicture}
     },
     {
