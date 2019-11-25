@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableHighlight, View} from "react-native";
-import IconFA from "react-native-vector-icons/FontAwesome";
+//import IconFA from "react-native-vector-icons/FontAwesome";
+import IconFA from 'react-native-vector-icons/FontAwesome5';
 
 const ActionBar = props => {
     return (
@@ -10,10 +11,12 @@ const ActionBar = props => {
                 <Circle icon="skip"/>
             </TouchableHighlight>
             <TouchableHighlight
+            underlayColor='none'
                 onPress={() => alert(props.action)}>
                 <Circle icon="favorite"/>
             </TouchableHighlight>
             <TouchableHighlight
+                underlayColor='none'
                 onPress={() => alert(props.action)}>
                 <Circle icon="like"/>
             </TouchableHighlight>
@@ -25,11 +28,12 @@ const Circle = props => {
     return (
         <View style={styles.circle}>
             <View style={{height: 65, width: 65,alignItems: "center", justifyContent: "center"}}>
-                <IconFA size={45} name={props.icon}/>
+                <IconFA size={45} name={props.icon} regular/>
             </View>
         </View>
     )
 };
+
 
 export default ActionBar;
 export {Circle};
@@ -45,16 +49,16 @@ const styles = StyleSheet.create({
     },
 
     circle: {
-        backgroundColor: "white",
+        backgroundColor:"white",
         height: 65,
         width: 65,
         borderRadius: 65/2,
         borderColor: "black",
         borderWidth: 0.1,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 10,
+        shadowColor: 'rgba(255, 186, 0,0.7)',
+        shadowOffset: { width: -3, height: 3 },
+        shadowOpacity: 1,
+        shadowRadius: 3,
         elevation: 10,
     }
 });
