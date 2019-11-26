@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
@@ -12,7 +11,7 @@ export default class Signup extends Component {
             <View style={styles.container}>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
-                <Form type="Signup"/>
+                <Form type="Signup" nav={this.props.navigation}/>
                 <View style={styles.signupTextCont}>
                     <Text style={styles.signupText}>Already have an account? </Text>
                     <TouchableOpacity onPress={() => navigate('Login')}><Text style={styles.signupButton}>Sign in</Text></TouchableOpacity>

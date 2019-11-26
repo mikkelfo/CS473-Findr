@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, View, Text, TextInput, Keyboard, Button, Image, TouchableWithoutFeedback} from "react-native";
+import {Button, Image, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from "react-native";
 import Header from "../Components/Header";
-import PictureRow from "../Components/PictureRow";
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -75,7 +74,7 @@ export default class UploadScreen extends Component {
                 />
          {image &&
                    <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <Button
+        <Button onPress={() => {alert("submitted"); this.props.navigation.navigate("Main")}}
                   title="Submit"
         />
         </View>
@@ -85,7 +84,6 @@ export default class UploadScreen extends Component {
 
   componentDidMount() {
     this.getPermissionAsync();
-    console.log('hi');
   }
 
   getPermissionAsync = async () => {
@@ -95,7 +93,7 @@ export default class UploadScreen extends Component {
         alert('Sorry, we need camera roll permissions to make this work!');
       }
     }
-  }
+  };
 
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

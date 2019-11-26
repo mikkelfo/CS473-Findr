@@ -11,11 +11,11 @@ import {fadeIn} from "react-navigation-transitions";
 import FullScreenPicture from "./Components/FullScreenPicture/FullScreenPicture";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
+import UploadScreen from "./Screens/UploadScreen";
 
 const MainNavigator = createStackNavigator(
     {
-        Login: { screen: LoginScreen},
-        Signup: { screen:  SignupScreen},
+        Upload: { screen: UploadScreen},
         Main: {screen: MainScreen},
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},

@@ -22,7 +22,7 @@ const SideMenu = props => {
                 <IconCom style={{marginBottom: 30}} name="account-circle-outline" size={100}/>
             </View>
             {/*<Link name="account-circle-outline" title="Profile" navigation={props.navigation}/>*/}
-            <Link name="cloud-upload-outline" title="Upload image"  nav="Upload" navigation={props.navigation}/>
+            <Link name="cloud-upload-outline" title="Upload image" nav="Upload" navigation={props.navigation}/>
             <Link name="bookmark-outline" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
         </View>
     )
