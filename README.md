@@ -12,9 +12,8 @@ Navigate to https://expo.io/@mikkelfo/findr
 #### For Android users:
 Download the 'Expo' app (link provided in the url)
 
-a. Scan the QR code using the 'Expo' app
-
-b. Use the 'Open project in browser' to launch an emulator and use it to launch the app
+a. Scan the QR code using the 'Expo' app <br/>
+b. Use the 'Open project in browser' to launch an emulator and use it to launch the app <br/>
 
 #### For iOS users:
 1. Download Expo (iOS link provided in the url)
@@ -23,20 +22,21 @@ b. Use the 'Open project in browser' to launch an emulator and use it to launch 
 4. Scan the QR code with your camera and launch the app using 'Expo'
 
 ### Overview
-Our project is seperated in two parts, frontend and backend
-Frontend is located in the 'frontend' folder
-Backend is located in the 'src' folder (navigate through the folders to 'src/main/java/com/fashionFindr/')
+Our project is seperated in two parts, frontend and backend<br/>
+Frontend is located in the 'frontend' folder<br/>
+Backend is located in the 'src' folder (navigate through the folders to 'src/main/java/com/fashionFindr/')<br/>
 
-Frontend is organized in three parts, navigation, screens and components.
-Navigation is defined in App.js
-Screens is defined in the 'Screens' folder and is the "pages/views" of our app.
-Components is defined in the 'Components' folder and is the building blocks of Screens.
+Frontend is organized in three parts, navigation, screens and components.<br/>
+Navigation is defined in App.js<br/>
+Screens is defined in the 'Screens' folder and is the "pages/views" of our app.<br/>
+Components is defined in the 'Components' folder and is the building blocks of Screens.<br/>
 
 Main implementations lies in: 
-Swiping feature: 'Components/Swiper.js'
-Comment screen: 'Components/FullScreenPicture'
-Bookmarks: 'Screens/BookmarkScreen.js'
-Discovery: 'Screens/DiscoveryScreen.js'
+
+Swiping feature: 'Components/Swiper.js' <br/>
+Comment screen: 'Components/FullScreenPicture' <br/>
+Bookmarks: 'Screens/BookmarkScreen.js' <br/>
+Discovery: 'Screens/DiscoveryScreen.js' <br/>
 Upload: 'Screens/UploadScreen.js'
 
 ## Have fun with our app! 
