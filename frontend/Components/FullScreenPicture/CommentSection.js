@@ -1,5 +1,5 @@
 import {FlatList, ScrollView, StyleSheet, Text, View} from "react-native";
-import {CommentAction} from "./Action";
+import {Action} from "./Action";
 import React, {Component} from "react";
 import {Comment} from "./Comment";
 
@@ -55,7 +55,7 @@ export default class CommentSection extends Component {
                     keyExtractor={item => item.commentID.toString()}
                     extraData={this.state.data}
                 />
-                <CommentAction
+                <Action
                     update={this.update}
                     id={this.props.id}
                     add={this.addComment}

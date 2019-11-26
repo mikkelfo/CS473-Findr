@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
 import IconFA from "react-native-vector-icons/FontAwesome";
 
-export const CommentAction = props => {
+export const Action = props => {
     const [value, onChangeText] = React.useState(null);
     return(
         <View style={action.container}>

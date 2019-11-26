@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Constants from 'expo-constants';
-//import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconCom from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Link = props => {

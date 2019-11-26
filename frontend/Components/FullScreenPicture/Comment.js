@@ -3,8 +3,8 @@ import React, {Component} from "react";
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Reply from "./Reply";
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import {CommentAction} from "./Action";
-import {UserOverlay} from "./UserOverlay";
+import {Action} from "./Action";
+import {UserOverlay} from "../UserOverlay";
 
 export class Comment extends Component {
     constructor (props) {
@@ -105,7 +105,7 @@ export class Comment extends Component {
                 'Content-Type': 'application/json'
             },
             body:JSON.stringify( {
-                "username": "user2", //await fetch(`http://192.168.0.9:8088/api/v1/user/currentUser`)
+                "username": "user2",
                 "content": content,
                 "commentID": this.props.id
             })}
@@ -161,7 +161,7 @@ export class Comment extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {this.state.reply && <CommentAction action="comment" add={this.addReply} autoFocus={true} ph = "Reply..."/>}
+                {this.state.reply && <Action action="comment" add={this.addReply} autoFocus={true} ph = "Reply..."/>}
 
                 <FlatList
                     style={{marginTop: 5,}}

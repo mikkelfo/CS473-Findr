@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from "react-native
 
 import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
-import {Circle} from "./ActionBar";
+import {Circle} from "./Circle";
 import {Loading} from "./Loading";
 
 export default class Swiper extends Component {
@@ -36,7 +36,20 @@ export default class Swiper extends Component {
             .catch(error => console.log("Error:",error))
     }
     up(index) {
+        const username = "user2";
+        const encodedValue = encodeURIComponent(username);
         const postID = this.state.data[index].postID;
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/getUserMatches/${encodedValue}/${postID}`,{
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify( {
+                "username": username,
+                "postID": postID
+            })})
+            .catch(error => console.log("Error:",error));
         this.props.navigation.navigate("FullPic", {
             id: postID
         });

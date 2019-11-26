@@ -8,7 +8,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SideMenu from "./Components/SideMenu";
 import {fadeIn} from "react-navigation-transitions";
-import FullScreenPicture from "./Components/FullScreenPicture";
+import FullScreenPicture from "./Components/FullScreenPicture/FullScreenPicture";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 
