@@ -18,13 +18,13 @@ export default class PictureRow extends Component {
     }
 
     fetchData() {
-        fetch(`http://192.168.0.9:8088/api/v1/user/${this.props.api}/user2`,
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/${this.props.api}/user2`,
             {method: 'GET',
             })
             .then(response => {return response.json()})
             .then(response => this.setState({data: response, isLoading: false}))
             .catch(e => console.log(e));
-    }
+    };
 
     expandRow() {
         if (this.state.horizontal) {

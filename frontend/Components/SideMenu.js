@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableNativeFeedback, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Constants from 'expo-constants';
-import IconFA from 'react-native-vector-icons/FontAwesome';
+import IconCom from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Link = props => {
     return (
         <TouchableOpacity
             onPress={() => props.navigation.navigate(props.nav)}>
             <View style={styles.link}>
-                <IconFA name={props.name} size={20} style="regular"/>
+                <IconCom name={props.name} size={20} style="regular"/>
                 <Text style={{fontSize: 18, marginLeft:10}}>{props.title}</Text>
             </View>
         </TouchableOpacity>
@@ -18,10 +18,12 @@ const Link = props => {
 const SideMenu = props => {
     return(
         <View style={styles.container}>
-            <Image style={styles.pb}/>
-            <Link name="user-circle" title="Profile" navigation={props.navigation}/>
-            <Link name="upload" title="Upload image" navigation={props.navigation}/>
-            <Link name="bookmark" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
+            <View style={{alignItems:"center", justifyContent:"center"}}>
+                <IconCom style={{marginBottom: 30}} name="account-circle-outline" size={100}/>
+            </View>
+            {/*<Link name="account-circle-outline" title="Profile" navigation={props.navigation}/>*/}
+            <Link name="cloud-upload-outline" title="Upload image"  nav="Upload" navigation={props.navigation}/>
+            <Link name="bookmark-outline" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
         </View>
     )
 };
@@ -32,11 +34,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     pb: {
-        width: 150,
-        height: 150,
-
-        borderRadius: 150/2,
-        backgroundColor: "red",
         marginBottom: 30,
     },
     link: {

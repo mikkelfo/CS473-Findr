@@ -5,7 +5,7 @@ import IconFA from "react-native-vector-icons/FontAwesome";
 const UserInfo = props => {
     const encodedValue = encodeURIComponent(props.username);
     const [reputation, onChange] = React.useState(-1);
-    fetch(`http://192.168.0.9:8088/api/v1/user/getUserInfo/${encodedValue}`,
+    fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/getUserInfo/${encodedValue}`,
         {method: 'GET',
         })
         .then(r => {return r.json()})

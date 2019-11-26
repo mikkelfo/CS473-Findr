@@ -67,7 +67,10 @@ public class UserController {
         userService.addUserFavorites(username, postID);
     }
 
-
+    @PostMapping(value = "/addMatches/{username}/{postID}")
+    public void addMatches(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserMatches(username, postID);
+    }
 
     @GetMapping(value = "getUserMatches/{username}")
     public List<Post> getUserMatches(@PathVariable("username") String username){

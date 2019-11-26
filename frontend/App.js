@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import MainScreen from "./Screens/MainScreen";
 import BookmarkScreen from "./Screens/BookmarkScreen";
 import DiscoveryScreen from "./Screens/DiscoveryScreen";
@@ -37,8 +37,6 @@ const AppDrawerNavigator = createDrawerNavigator(
         drawerWidth: 225,
     }
 );
-/*
-
 const AuthNavigator = createStackNavigator(
   {
     Login: { screen: LoginScreen},
@@ -50,16 +48,16 @@ const AuthNavigator = createStackNavigator(
   }
 );
 
-
 const switchNavigator = createSwitchNavigator(
   {
       Auth: AuthNavigator,
-      MainApp: MainNavigator,
-  },
-  { headerMode: "none", initialRouteName: "Auth" }
+      MainApp: AppDrawerNavigator,
+  }, {
+      headerMode: "none",
+      initialRouteName: "Auth" }
 );
-*/
-const App = createAppContainer(AppDrawerNavigator);
+
+const App = createAppContainer(switchNavigator);
 
 export default App;
 

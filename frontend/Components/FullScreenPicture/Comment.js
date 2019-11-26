@@ -1,10 +1,9 @@
-// TODO: Hook this up to props attribute OP_picked, line 167
 import React, {Component} from "react";
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Reply from "./Reply";
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import {CommentAction} from "./Action";
-import {UserOverlay} from "./UserOverlay";
+import {Action} from "./Action";
+import {UserOverlay} from "../UserOverlay";
 
 export class Comment extends Component {
     constructor (props) {
@@ -25,7 +24,7 @@ export class Comment extends Component {
     }
 
     changeVotes(action) {
-        fetch(`http://192.168.0.9:8088/api/v1/comment/${action}Comment/${this.props.id}`,{
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/${action}Comment/${this.props.id}`,{
             method: "POST",
             body:JSON.stringify({
                 "commentID": this.props.id,
@@ -87,7 +86,7 @@ export class Comment extends Component {
     }
 
     async fetchReplies(postID) {
-        let replies = await fetch(`http://192.168.0.9:8088/api/v1/reply/getCommentReplies/${postID}`,
+        let replies = await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/getCommentReplies/${postID}`,
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));
@@ -98,14 +97,14 @@ export class Comment extends Component {
             return
         }
         this.setState({reply: !this.state.reply});
-        await fetch(`http://192.168.0.9:8088/api/v1/reply/reply`,{
+        await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/reply`,{
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body:JSON.stringify( {
-                "username": "user2", //await fetch(`http://192.168.0.9:8088/api/v1/user/currentUser`)
+                "username": "user2",
                 "content": content,
                 "commentID": this.props.id
             })}
@@ -161,7 +160,7 @@ export class Comment extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {this.state.reply && <CommentAction action="comment" add={this.addReply} autoFocus={true} ph = "Reply..."/>}
+                {this.state.reply && <Action action="comment" add={this.addReply} autoFocus={true} ph = "Reply..."/>}
 
                 <FlatList
                     style={{marginTop: 5,}}

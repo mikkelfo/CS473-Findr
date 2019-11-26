@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
+import React, {Component} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import Form from '../Components/Form';
 
@@ -12,7 +11,7 @@ export default class Login extends Component {
                 <View style={styles.container}>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
-                <Form type="Login"/>
+                <Form type="Login" nav={this.props.navigation}/>
                 <View style={styles.signupTextCont}>
                     <Text style={styles.signupText}>Dont have an account yet? </Text>
                     <TouchableOpacity onPress={() => navigate('Signup')}><Text style={styles.signupButton}>Signup</Text></TouchableOpacity>

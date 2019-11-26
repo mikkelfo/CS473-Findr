@@ -1,5 +1,5 @@
 import {FlatList, ScrollView, StyleSheet, Text, View} from "react-native";
-import {CommentAction} from "./Action";
+import {Action} from "./Action";
 import React, {Component} from "react";
 import {Comment} from "./Comment";
 
@@ -17,14 +17,14 @@ export default class CommentSection extends Component {
     }
 
     async fetch(postID) {
-        let comments = await fetch(`http://192.168.0.9:8088/api/v1/comment/getPostComment/${postID}`,
+        let comments = await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/getPostComment/${postID}`,
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));
         this.setState({data: comments})
     }
     async addComment(content, postID) {
-        await fetch(`http://192.168.0.9:8088/api/v1/comment/comment`,{
+        await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/comment`,{
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -55,7 +55,7 @@ export default class CommentSection extends Component {
                     keyExtractor={item => item.commentID.toString()}
                     extraData={this.state.data}
                 />
-                <CommentAction
+                <Action
                     update={this.update}
                     id={this.props.id}
                     add={this.addComment}

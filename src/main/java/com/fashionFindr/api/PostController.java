@@ -24,7 +24,7 @@ public class PostController {
         postService.createPost(post);
     }
 
-    @GetMapping(value = "getPost/{postID}")
+    @GetMapping(value = "/getPost/{postID}")
     public Post getPost(@PathVariable("postID") int postID){
         return postService.getPost(postID);
     }
@@ -34,13 +34,11 @@ public class PostController {
         return postService.getUnansweredPosts();
     }
 
-//    @PostMapping(value="updateCorrectlyAnswered/{username}/{postID}/{correctlyAnswered}")
-//    public void updateCorrectlyAnswered(@PathVariable("postID") int postID, @PathVariable("username") String username,
-//                                        @PathVariable("correctlyAnswered") int correctlyAnswered){
-//        postService.updateCorrectlyAnswered(username, postID, correctlyAnswered);
-//    }
-//
-//    replaced with chooseCommentAsCorrectAnswer in comment controller
+    @PostMapping(value="/updateCorrectlyAnswered/{username}/{postID}/{correctlyAnswered}")
+    public void updateCorrectlyAnswered(@PathVariable("postID") int postID, @PathVariable("username") String username,
+                                        @PathVariable("correctlyAnswered") int correctlyAnswered){
+        postService.updateCorrectlyAnswered(username, postID, correctlyAnswered);
+    }
 
     @GetMapping ("getExplorePosts")
     public List<Post> getExplorePosts(){

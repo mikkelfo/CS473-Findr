@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
+import React, {Component} from 'react';
+import {AsyncStorage, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
 
 export default class Form extends Component {
 
@@ -15,54 +14,29 @@ export default class Form extends Component {
     saveData =async()=>{
         const {nickname,password} = this.state;
 
-        //save data with asyncstorage
+        // TODO: save data with asyncstorage
         let loginDetails={
             nickname: nickname,
             password: password
         }
-        alert(nickname)
         if(this.props.type !== 'Login')
         {
-            AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+            await AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
 
             Keyboard.dismiss();
-            alert("You successfully registered. \n Nickname: " + nickname + ' password: ' + password + ' \n PS: Shall we even show the password etc. ?');
-            alert("navigate to main")
+            alert("You successfully registered")
+                //\n Nickname: " + nickname + ' password: ' + password + ' \n PS: Shall we even show the password etc. ?'
+            this.props.nav.navigate('Main');
 
         }
-        else if(this.props.type == 'Login')
+        else if(this.props.type === 'Login')
         {
-            try{
-                let loginDetails = await AsyncStorage.getItem('loginDetails');
-                let ld = JSON.parse(loginDetails);
-
-                if (ld.nickname != null && ld.password != null)
-                {
-                    if (ld.nickname == nickname && ld.password == password)
-                    {
-                        alert('Go in!');
-                        check = 1
-                    }
-                    // TODO: remove this hardcoded
-                    if (nickname == 'user' && password == 'user') {
-                        navigation.navigate('Main');}
-                    else
-                    {
-                        alert('Nickname and Password does not exist!');
-                    }
-                }
-
-            }catch(error)
-            {
-                alert(error);
+            if (nickname.toLowerCase() === 'user' && password.toLowerCase() === 'user') {
+                this.props.nav.navigate('Main');
+            } else {
+                alert("Invalid: try 'user'")
             }
         }
-    }
-
-    showData = async()=>{
-        let loginDetails = await AsyncStorage.getItem('loginDetails');
-        let ld = JSON.parse(loginDetails);
-        alert('nickname: '+ ld.nickname + ' ' + 'password: ' + ld.password);
     }
 
     render() {
