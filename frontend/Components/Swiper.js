@@ -16,20 +16,36 @@ export default class Swiper extends Component {
         }
     }
     left(index) {
-        console.log("Left: " + index)
+        // TODO: Add something here?
     }
-    right(index ) {
-        console.log("Right: " + index)
+    async right(index) {
+        // TODO: Get current user
+        const username = "user2";
+        const encodedValue = encodeURIComponent(username);
+        const postID = this.state.data[index].postID;
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/addFavorites/${encodedValue}/${postID}`,{
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify( {
+                "username": username,
+                "postID": postID
+            })})
+            .catch(error => console.log("Error:",error))
     }
     up(index) {
-        console.log("Up: " + index)
+        const postID = this.state.data[index].postID;
+        this.props.navigation.navigate("FullPic", {
+            id: postID
+        });
     }
     componentDidMount() {
         this.fetchCards()
     }
-
     fetchCards() {
-        fetch(`http://192.168.0.9:8088/api/v1/post/getSwiperPosts`,
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getSwiperPosts`,
             {method: 'GET',
             })
             .then(response => {return response.json()})
@@ -64,7 +80,6 @@ export default class Swiper extends Component {
                         onSwipedLeft={i => this.left(i)}
                         onSwipedRight={i => this.right(i)}
                         onSwipedTop={i => this.up(i)}
-                        onSwipedAll={() => alert("Render more cards")}
                     >
                         {this.renderCards()}
                     </CardStack>

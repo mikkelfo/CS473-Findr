@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableNativeFeedback,TouchableOpacity} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Constants from 'expo-constants';
 //import IconFA from 'react-native-vector-icons/FontAwesome';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
@@ -36,6 +36,12 @@ const SideMenu = props => {
             <Link1 name="account-circle-outline" title="Profile" navigation={props.navigation}/>
             <Link1 name="cloud-upload-outline" title="Upload image" navigation={props.navigation}/>
             <Link1 name="bookmark-outline" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
+            <View style={{alignItems:"center", justifyContent:"center"}}>
+                <IconFA style={{marginBottom: 30}} name="user-circle" size={100}/>
+            </View>
+            {/*<Link name="user-circle" title="Profile" navigation={props.navigation}/>*/}
+            <Link name="upload" title="Upload image" navigation={props.navigation}/>
+            <Link name="bookmark" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
         </View>
     )
 };
@@ -46,11 +52,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     pb: {
-        width: 150,
-        height: 150,
-
-        borderRadius: 150/2,
-        backgroundColor: "red",
         marginBottom: 30,
     },
     link: {

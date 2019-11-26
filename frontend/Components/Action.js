@@ -2,7 +2,6 @@ import React from "react";
 import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
 import IconFA from "react-native-vector-icons/FontAwesome";
 
-// TODO: Have POST functionality for both comment and reply, line 20
 export const CommentAction = props => {
     const [value, onChangeText] = React.useState("");
     return(

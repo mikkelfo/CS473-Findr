@@ -8,9 +8,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "events": "^3.0.0",
     "evil-icons": "^1.10.1",
     "expo": "^35.0.0",
     "expo-constants": "latest",
+    "fs": "0.0.1-security",
+    "localtunnel": "^2.0.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
@@ -19,6 +22,8 @@
     "react-native-elements": "^1.2.7",
     "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "~1.3.0",
+    "react-native-network-info": "^5.2.1",
+    "react-native-public-ip": "^1.0.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-router-flux": "^4.0.6",
     "react-native-vector-icons": "^6.6.0",
@@ -28,7 +33,8 @@
     "react-navigation-stack": "^1.10.3",
     "react-navigation-transitions": "^1.0.12",
     "react-navigator": "0.0.0-0",
-    "sharp": "^0.23.2"
+    "sharp": "^0.23.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"

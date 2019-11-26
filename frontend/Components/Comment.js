@@ -11,7 +11,7 @@ export class Comment extends Component {
         super(props);
         this.state = {
             data: [],
-            upvotes: 1,
+            upvotes: this.props.upvote,
             isUpvoted: false,
             isDownvoted: false,
             isPicked: false,
@@ -23,19 +23,31 @@ export class Comment extends Component {
         this.upvote = this.upvote.bind(this);
         this.downvote = this.downvote.bind(this);
     }
+
+    changeVotes(action) {
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/${action}Comment/${this.props.id}`,{
+            method: "POST",
+            body:JSON.stringify({
+                "commentID": this.props.id,
+            })
+    })}
     upvote() {
-        if (this.state.isUpvoted) {             // cancel upvote
+        if (this.state.isUpvoted) {
+            this.changeVotes("downvote");// cancel upvote
             this.setState({
                 upvotes: this.state.upvotes - 1,
                 isUpvoted: false,
             })
-        } else if (this.state.isDownvoted) {    // cancel downvote, upvote
+        } else if (this.state.isDownvoted) {
+            this.changeVotes("upvote");
+            this.changeVotes("upvote");// cancel downvote, upvote
             this.setState({
                 upvotes: this.state.upvotes + 2,
                 isUpvoted: true,
                 isDownvoted: false,
             })
-        } else {                                // upvote
+        } else {
+            this.changeVotes("upvote"); // upvote
             this.setState({
                 upvotes: this.state.upvotes + 1,
                 isUpvoted: true,
@@ -43,18 +55,22 @@ export class Comment extends Component {
         }
     }
     downvote() {
-        if (this.state.isDownvoted) {           // cancel downvote
+        if (this.state.isDownvoted) {
+            this.changeVotes("upvote");// cancel downvote
             this.setState({
                 upvotes: this.state.upvotes + 1,
                 isDownvoted: false,
             })
-        } else if (this.state.isUpvoted) {      // cancel upvote, downvote
+        } else if (this.state.isUpvoted) {
+            this.changeVotes("downvote");
+            this.changeVotes("downvote");// cancel upvote, downvote
             this.setState({
                 upvotes: this.state.upvotes - 2,
                 isUpvoted: false,
                 isDownvoted: true,
             })
-        } else {                                // downvote
+        } else {
+            this.changeVotes("downvote");// downvote
             this.setState({
                 upvotes: this.state.upvotes - 1,
                 isDownvoted: true,
@@ -65,21 +81,36 @@ export class Comment extends Component {
     toggleOverlay() {
         this.setState({ isVisible: !this.state.isVisible })
     }
-    addReply(value) {
-        this.setState({reply: !this.state.reply});
-        alert(value)
-    }
 
     componentDidMount() {
         this.fetchReplies(this.props.id)
     }
 
     async fetchReplies(postID) {
-        let replies = await fetch(`http://192.168.0.9:8088/api/v1/reply/getCommentReplies/${postID}`,
+        let replies = await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/getCommentReplies/${postID}`,
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));
         this.setState({data: replies})
+    }
+    async addReply(content, id) {
+        if (content === null) {
+            return
+        }
+        this.setState({reply: !this.state.reply});
+        await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/reply`,{
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify( {
+                "username": "user2", //await fetch(`http://192.168.0.9:8088/api/v1/user/currentUser`)
+                "content": content,
+                "commentID": this.props.id
+            })}
+        );
+        this.fetchReplies(this.props.id)
     }
 
     render() {
@@ -130,13 +161,14 @@ export class Comment extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {this.state.reply && <CommentAction add = {this.addReply} autoFocus={true} ph = "Reply..."/>}
+                {this.state.reply && <CommentAction action="comment" add={this.addReply} autoFocus={true} ph = "Reply..."/>}
 
                 <FlatList
                     style={{marginTop: 5,}}
                     data={this.state.data}
                     renderItem={({item}) => <Reply username={item.username} reply={item.content}/>}
                     keyExtractor={item => item.replyID.toString()}
+                    extraData={this.state.data}
                 />
                 <UserOverlay
                     visible = {this.state.isVisible}

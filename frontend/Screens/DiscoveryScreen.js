@@ -21,7 +21,7 @@ class DiscoveryScreen extends Component {
     }
 
     fetchCards() {
-        fetch(`http://192.168.0.9:8088/api/v1/post/getExplorePosts`,
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getExplorePosts`,
             {method: 'GET',
             })
             .then(response => {return response.json()})
