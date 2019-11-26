@@ -8,6 +8,7 @@ Korea Advanced Institute of Science and Technology.
 
 ### How do I use it?
 Navigate to https://expo.io/@mikkelfo/findr
+This project is optimized for Android usage, so Android is prefered. However, you can still launch it (with a few extra steps) on iOS.
 
 #### For Android users:
 Download the 'Expo' app (link provided in the url)
