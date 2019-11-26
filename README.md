@@ -11,7 +11,9 @@ Navigate to https://expo.io/@mikkelfo/findr
 
 #### For Android users:
 Download the 'Expo' app (link provided in the url)
+
 a. Scan the QR code using the 'Expo' app
+
 b. Use the 'Open project in browser' to launch an emulator and use it to launch the app
 
 #### For iOS users:
