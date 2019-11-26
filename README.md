@@ -22,17 +22,16 @@ b. Use the 'Open project in browser' to launch an emulator and use it to launch 
 4. Scan the QR code with your camera and launch the app using 'Expo'
 
 ### Overview
-Our project is seperated in two parts, frontend and backend<br/>
+###### Our project is seperated in two parts, frontend and backend<br/>
 Frontend is located in the 'frontend' folder<br/>
 Backend is located in the 'src' folder (navigate through the folders to 'src/main/java/com/fashionFindr/')<br/>
 
-Frontend is organized in three parts, navigation, screens and components.<br/>
+###### Frontend is organized in three parts, navigation, screens and components.<br/>
 Navigation is defined in App.js<br/>
 Screens is defined in the 'Screens' folder and is the "pages/views" of our app.<br/>
 Components is defined in the 'Components' folder and is the building blocks of Screens.<br/>
 
-Main implementations lies in: 
-
+###### Main implementations lies in: 
 Swiping feature: 'Components/Swiper.js' <br/>
 Comment screen: 'Components/FullScreenPicture' <br/>
 Bookmarks: 'Screens/BookmarkScreen.js' <br/>
