@@ -59,11 +59,10 @@ export default class PictureRow extends Component {
                         renderItem={({item}) =>
                             <Thumbnail
                                 style={styles.pic}
-                                src={item.src}
-                                id={item.id}
+                                id={item.postID}
                                 navigation={this.props.navigation}
                             />}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item.postID.toString()}
                         key={this.state.horizontal}
                     />
                 </View>

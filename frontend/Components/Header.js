@@ -1,12 +1,9 @@
 import React, {Component} from "react";
-import {StyleSheet, View, TouchableOpacity} from "react-native";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import IconO from 'react-native-vector-icons/Octicons';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import Constants from 'expo-constants';
 import {DrawerActions} from "react-navigation-drawer";
-
-
 
 
 class Header extends Component {
@@ -24,6 +21,8 @@ class Header extends Component {
 
         if (route === "Main" || route === "Discovery") {
             eval("this.state." + route + "= '" + current.toString() + "'")
+        } else {
+            eval("this.state.Profile = '" + current.toString() + "'")
         }
 
         return (
@@ -34,7 +33,7 @@ class Header extends Component {
                             name="user-circle"
                             regular
                             size={50}
-                            color={this.state.Discovery}
+                            color={this.state.Profile}
                             onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer())}
                         />
                     </View>

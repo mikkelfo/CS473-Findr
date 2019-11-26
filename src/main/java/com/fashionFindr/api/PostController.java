@@ -24,7 +24,7 @@ public class PostController {
         postService.createPost(post);
     }
 
-    @GetMapping(value = "getPost/{postID}")
+    @GetMapping(value = "/getPost/{postID}")
     public Post getPost(@PathVariable("postID") int postID){
         return postService.getPost(postID);
     }
@@ -34,7 +34,7 @@ public class PostController {
         return postService.getUnansweredPosts();
     }
 
-    @PostMapping(value="updateCorrectlyAnswered/{username}/{postID}/{correctlyAnswered}")
+    @PostMapping(value="/updateCorrectlyAnswered/{username}/{postID}/{correctlyAnswered}")
     public void updateCorrectlyAnswered(@PathVariable("postID") int postID, @PathVariable("username") String username,
                                         @PathVariable("correctlyAnswered") int correctlyAnswered){
         postService.updateCorrectlyAnswered(username, postID, correctlyAnswered);
@@ -46,44 +46,4 @@ public class PostController {
     }
 
 
-//    @GetMapping("getUnansweredPosts")
-//    public List<Post> getUnansweredPosts(){
-//        return postService.getUnansweredPosts();
-//    }
-//
-//    @GetMapping("getTrendingPosts")
-//    public List<Post> getTrendingPosts(){
-//        return postService.getTrendingPosts();
-//    }
-//
-//    @GetMapping("getPostInfo")
-//    public Post getPostInfo(@RequestParam(value = "postID") String postID){
-//        return postService.getPostInfo(postID);
-//    }
-//
-//    @GetMapping("getComments")
-//    public List<Comment> getComments(@RequestParam(value = "postID") String postID){
-//        return postService.getComments(postID);
-//    }
-
-
-//    @GetMapping("answered")
-//    public List<Post> getAll_AnsweredPost(){
-//        return postService.selectAll_AnsweredPost();
-//    }
-//
-//    @GetMapping("unanswered")
-//    public List<Post> getAll_UnasweredPost(){
-//        return postService.selectAll_UnansweredPost();
-//    }
-//
-//    @GetMapping("all")
-//    public List<Post> getAllPost(){
-//        return postService.selectAllPost();
-//    }
-//
-//    @PostMapping("updateAnswerStatus")
-//    public void updateAnswerStatus(@RequestParam(value = "post_ID")String post_ID, @RequestParam(value = "answerStatus") int answerStatus){
-//        postService.updateAnswer_Status(post_ID, answerStatus);
-//    }
 }

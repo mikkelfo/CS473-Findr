@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, Text, TouchableHighlight, View} from "react-native";
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
@@ -44,6 +44,7 @@ export default class Swiper extends Component {
     componentDidMount() {
         this.fetchCards()
     }
+
     fetchCards() {
         fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getSwiperPosts`,
             {method: 'GET',
@@ -84,18 +85,18 @@ export default class Swiper extends Component {
                         {this.renderCards()}
                     </CardStack>
                     <View style={styles.actionbar}>
-                        <TouchableHighlight
+                        <TouchableOpacity
                             onPress={() => this.swiper.swipeLeft()}>
-                            <Circle icon="star"/>
-                        </TouchableHighlight>
-                        <TouchableHighlight
+                            <Circle icon="times" regular/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             onPress={() => this.swiper.swipeTop()}>
-                            <Circle icon="star"/>
-                        </TouchableHighlight>
-                        <TouchableHighlight
+                            <Circle icon="heart"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             onPress={() => this.swiper.swipeRight()}>
-                            <Circle icon="star"/>
-                        </TouchableHighlight>
+                            <Circle icon ="comment-dots"/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             )

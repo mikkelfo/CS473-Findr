@@ -3,7 +3,7 @@ import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
 import IconFA from "react-native-vector-icons/FontAwesome";
 
 export const CommentAction = props => {
-    const [value, onChangeText] = React.useState("");
+    const [value, onChangeText] = React.useState(null);
     return(
         <View style={action.container}>
             <TextInput
@@ -16,7 +16,10 @@ export const CommentAction = props => {
                 placeholder = {props.ph}
                 placeholderTextColor = "rgba(0, 0, 0, 0.6)"
             />
-            <TouchableOpacity onPress={() => props.add(value)}>
+            <TouchableOpacity onPress={() => {
+                props.add(value, props.id);
+                onChangeText("")
+            }}>
                 <IconFA
                     name="arrow-circle-right"
                     color="rgba(0, 0, 0, 0.8)"

@@ -41,20 +41,7 @@ public class UserService {
     public void saveOrUpdateUser(User user){
         userDao.save(user);
     }
-//
-//    public List<User> getAllUser(){
-//        return userDao.selectAllUser();
-//    }
-//
-//    public int updateReputation(String username, int change_in_reputation){
-//        return userDao.updateReputation(username, change_in_reputation);
-//    }
-//
-//    public User getUserFromUsername(String username){
-//        System.out.println("getting user with username");
-//        return userDao.getUserByUsername(username);
-//    }
-//
+
     public void addUserFavorites(String username, int postID){
         User user = userDao.findByUsername(username);
         user.setUserFavorites(postID);
@@ -66,14 +53,6 @@ public class UserService {
         user.setUserMatches(postID);
         userDao.save(user);
     }
-//
-//    public List<Post> getUserMatches(User user){
-//        return userDao.getUserMatches(user);
-//    }
-//
-//    public List<Post> getUserPost(User user){
-//        return userDao.getUserPost(user);
-//    }
 
     public User getUserInfo(String username){
 //        return userDao.getUserInfo(username);
@@ -110,5 +89,15 @@ public class UserService {
             userPostsPosts.add(postDao.findByPostID(userPosts.get(i)));
         }
         return userPostsPosts;
+    }
+
+    public User handleLogin(String username, String password){
+        User user = getUserInfo(username);
+        if (user.getPassword().equals(password)){
+            return user;
+        } else {
+            System.out.println("Incorrect password");
+            return null;
+        }
     }
 }
