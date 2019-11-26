@@ -34,7 +34,7 @@ const SideMenu = props => {
         <View style={styles.container}>
             <Image style={styles.pb}/>
             <Link1 name="account-circle-outline" title="Profile" navigation={props.navigation}/>
-            <Link1 name="cloud-upload-outline" title="Upload image" navigation={props.navigation}/>
+            <Link1 name="cloud-upload-outline" title="Upload image"  nav="Upload" navigation={props.navigation}/>
             <Link1 name="bookmark-outline" title="Bookmarks" nav="Bookmark" navigation={props.navigation}/>
             <View style={{alignItems:"center", justifyContent:"center"}}>
                 <IconFA style={{marginBottom: 30}} name="user-circle" size={100}/>
