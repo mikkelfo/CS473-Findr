@@ -39,7 +39,7 @@ export default class Swiper extends Component {
         const username = "user2";
         const encodedValue = encodeURIComponent(username);
         const postID = this.state.data[index].postID;
-        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/getUserMatches/${encodedValue}/${postID}`,{
+        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/addUserMatches/${encodedValue}/${postID}`,{
             method: "POST",
             headers: {
                 'Accept': 'application/json',
