@@ -1,4 +1,3 @@
-// TODO: Hook this up to props attribute OP_picked, line 167
 import React, {Component} from "react";
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Reply from "./Reply";

@@ -14,6 +14,8 @@ import SignupScreen from "./Screens/SignupScreen";
 
 const MainNavigator = createStackNavigator(
     {
+        Login: { screen: LoginScreen},
+        Signup: { screen:  SignupScreen},
         Main: {screen: MainScreen},
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},

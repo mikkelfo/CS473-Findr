@@ -18,7 +18,6 @@ class Header extends Component {
         };
         const {navigate} = this.props.navigation;
         const route = this.props.navigation.state.routeName;
-
         if (route === "Main" || route === "Discovery") {
             eval("this.state." + route + "= '" + current.toString() + "'")
         } else {
