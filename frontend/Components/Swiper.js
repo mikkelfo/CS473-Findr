@@ -71,7 +71,7 @@ export default class Swiper extends Component {
             return(
                 <Card style={[styles.card]} key={item.postID}>
                     <View style={styles.textcontainer}>
-                        <Text style={styles.title}>{item.username}</Text>
+                        <Text style={styles.title}>{item.title}</Text>
                         <Text style={styles.description}>{item.description}</Text>
                     </View>
                 </Card>
@@ -104,11 +104,11 @@ export default class Swiper extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => this.swiper.swipeTop()}>
-                            <Circle icon="heart"/>
+                            <Circle icon="comment-dots"/>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => this.swiper.swipeRight()}>
-                            <Circle icon ="comment-dots"/>
+                            <Circle icon ="heart"/>
                         </TouchableOpacity>
                     </View>
                 </View>
