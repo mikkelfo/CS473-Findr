@@ -5,6 +5,7 @@ import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
 import {Circle} from "./Circle";
 import {Loading} from "./Loading";
+import {TutorialCard} from "./Tutorial";
 
 export default class Swiper extends Component {
 
@@ -12,13 +13,16 @@ export default class Swiper extends Component {
         super(props);
         this.state = {
             isLoading: true,
-            data: [],
+            data: [{key:"-1"}],
         }
     }
     left(index) {
         // TODO: Add something here?
     }
     async right(index) {
+        if (index === 0) {
+            return
+        }
         // TODO: Get current user
         const username = "user2";
         const encodedValue = encodeURIComponent(username);
@@ -36,6 +40,9 @@ export default class Swiper extends Component {
             .catch(error => console.log("Error:",error))
     }
     up(index) {
+        if (index === 0) {
+            return
+        }
         const username = "user2";
         const encodedValue = encodeURIComponent(username);
         const postID = this.state.data[index].postID;
@@ -63,20 +70,29 @@ export default class Swiper extends Component {
             {method: 'GET',
             })
             .then(response => {return response.json()})
-            .then(response => this.setState({data: response, isLoading: false}))
+            .then(response => this.setState(previousState => ({data: [...previousState.data, ...response], isLoading: false})))
             .catch(e => console.log(e));
     }
     renderCards() {
-        return this.state.data.map((item) => {
-            return(
-                <Card style={[styles.card]} key={item.postID}>
-                    <View style={styles.textcontainer}>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.description}>{item.description}</Text>
-                    </View>
-                </Card>
-        )}
-    )}
+        return (
+            this.state.data.map((item) => {
+                if (item.key === "-1") {
+                    return(
+                        <TutorialCard key={item.key}/>
+                    )
+                } else {
+                    return (
+                        <Card style={[styles.card]} key={item.postID}>
+                            <View style={styles.textcontainer}>
+                                <Text style={styles.title}>{item.title}</Text>
+                                <Text style={styles.description}>{item.description}</Text>
+                            </View>
+                        </Card>
+                    )
+                }
+            })
+        )
+    }
     render() {
         if (this.state.isLoading) {
             return (
