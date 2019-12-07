@@ -3,9 +3,12 @@ package com.fashionFindr.service;
 import com.fashionFindr.dao.CommentDao;
 import com.fashionFindr.dao.PostDao;
 import com.fashionFindr.model.Post;
+import com.fashionFindr.model.User;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,9 +43,27 @@ public class PostService {
         return postDao.findByPostID(postID);
     }
 
-    public List<Post> getUnansweredPosts(){
-        return postDao.findByCorrectlyAnswered(0);
+//    public List<Post> getUnansweredPosts(){
+//        return postDao.findByCorrectlyAnswered(0);
+//    }
+
+    public List<Post> getUnansweredPosts(String username){
+        List<Post> unansweredPosts = postDao.findByCorrectlyAnswered(0);
+        List<Post> swiperPosts = new ArrayList<>();
+        User user = userService.getUserInfo(username);
+        List<Integer> userSeenPosts = user.getUserSeenPosts();
+        for (int j = 0 ; j < unansweredPosts.size(); j++){
+            int postID = unansweredPosts.get(j).getPostID();
+            if (userSeenPosts.contains(postID)){
+
+            } else{
+                swiperPosts.add(postDao.findByPostID(postID));
+            }
+        }
+
+        return swiperPosts;
     }
+
 
     public  List<Post> getAllPosts(){
         return postDao.findAll();
