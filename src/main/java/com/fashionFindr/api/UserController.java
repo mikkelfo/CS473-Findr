@@ -64,11 +64,13 @@ public class UserController {
 
     @PostMapping(value = "/addFavorites/{username}/{postID}")
     public void addFavorites(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username, postID);
         userService.addUserFavorites(username, postID);
     }
 
     @PostMapping(value = "/addMatches/{username}/{postID}")
     public void addMatches(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username,postID);
         userService.addUserMatches(username, postID);
     }
 
@@ -80,5 +82,10 @@ public class UserController {
     @GetMapping(value = "getUserPosts/{username}")
     public List<Post> getUserPosts(@PathVariable("username") String username){
         return userService.getUserPosts(username);
+    }
+
+    @PostMapping(value = "addUserSeenPosts/{username}/{postID}")
+    public void addSeenPosts(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username,postID);
     }
 }

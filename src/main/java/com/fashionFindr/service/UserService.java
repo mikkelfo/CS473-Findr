@@ -36,8 +36,6 @@ public class UserService {
         userDao.save(user);
     }
 
-
-
     public void saveOrUpdateUser(User user){
         userDao.save(user);
     }
@@ -109,6 +107,17 @@ public class UserService {
         } else {
             System.out.println("Incorrect password");
             return null;
+        }
+    }
+
+    public void addUserSeenPosts(String username, int postID){
+        User user = getUserInfo(username);
+        List currentUserSeenPosts = user.getUserSeenPosts();
+        if (currentUserSeenPosts.contains(postID)){
+            System.out.println("alr stored in seen posts list");
+        } else {
+            user.setUserSeenPosts(postID);
+            userDao.save(user);
         }
     }
 }

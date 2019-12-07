@@ -17,6 +17,7 @@ public class User {
     List<Integer> userFavorites;
     List<Integer> userMatches;
     List<Integer> userPosts;
+    List<Integer> userSeenPosts;
 
     public User(@JsonProperty("username") String username,
                 @JsonProperty("password") String password,
@@ -28,6 +29,7 @@ public class User {
         this.userFavorites = new ArrayList();
         this.userMatches = new ArrayList();
         this.userPosts = new ArrayList();
+        this.userSeenPosts = new ArrayList();
     }
 
     public String getUsername() {
@@ -66,5 +68,13 @@ public class User {
     }
     public void setUserPosts(int postID){
         userPosts.add(postID);
+    }
+
+    public List<Integer> getUserSeenPosts() {
+        return userSeenPosts;
+    }
+
+    public void setUserSeenPosts(int postID) {
+        userSeenPosts.add(postID);
     }
 }
