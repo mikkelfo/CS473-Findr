@@ -12,6 +12,7 @@ import FullScreenPicture from "./Components/FullScreenPicture/FullScreenPicture"
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import UploadScreen from "./Screens/UploadScreen";
+import Help from "./Screens/Help";
 
 const MainNavigator = createStackNavigator(
     {
@@ -20,6 +21,7 @@ const MainNavigator = createStackNavigator(
         Bookmark: {screen: BookmarkScreen},
         Discovery: {screen: DiscoveryScreen},
         FullPic: {screen: FullScreenPicture},
+        Help: {screen: Help},
     },
     {
         initialRouteName: 'Main',

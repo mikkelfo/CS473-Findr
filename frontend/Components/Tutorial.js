@@ -29,7 +29,7 @@ export const TutorialCard = () => {
                     height="100"
                     source={require('../assets/left.svg')}
                 />
-                <Text>Skip</Text>
+                <Text>Pass</Text>
             </View>
         </Card>
     )
