@@ -3,6 +3,7 @@ import {Dimensions, StyleSheet, Text, View} from "react-native";
 import {Card} from "react-native-card-stack-swiper";
 import Constants from "expo-constants";
 import SvgUri from "react-native-svg-uri";
+import IconFA from 'react-native-vector-icons/FontAwesome5';
 
 export const TutorialCard = () => {
     return(
@@ -31,6 +32,10 @@ export const TutorialCard = () => {
                 />
                 <Text>Pass</Text>
             </View>
+            <Text style={{alignItems:"center", position:"absolute", bottom: 10, left: 10, right:10}}>
+                For more, please refer to the help section, located in the side menu {"\n"}
+                <Text>(Drag from the left side or click <IconFA name="user-circle"/>)</Text>
+            </Text>
         </Card>
     )
 };

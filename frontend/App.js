@@ -56,7 +56,7 @@ const switchNavigator = createSwitchNavigator(
       MainApp: AppDrawerNavigator,
   }, {
       headerMode: "none",
-      initialRouteName: "MainApp" }
+      initialRouteName: "Auth" }
 );
 
 const App = createAppContainer(switchNavigator);
