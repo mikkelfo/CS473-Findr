@@ -19,7 +19,7 @@ class DiscoveryScreen extends Component {
     componentDidMount() {
         this.fetchCards()
     }
-
+    /*
     fetchCards() {
         fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getExplorePosts`,
             {method: 'GET',
@@ -28,7 +28,7 @@ class DiscoveryScreen extends Component {
             .then(response => this.setState({data: response, isLoading: false}))
             .catch(e => console.log(e));
     }
-
+    */
     render() {
         if (this.state.isLoading) {
             return (
