@@ -44,7 +44,7 @@ export default class UploadScreen extends Component {
               "description": description,
               "username": "user1"
           });
-          await fetch('http://143.248.219.120:8088/api/v1/post/post', {
+          await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/post', {
               method: 'POST',
               headers: {
                   Accept: 'application/json',
