@@ -18,7 +18,7 @@ export default class PictureRow extends Component {
     }
 
     fetchData() {
-        fetch(`http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/${this.props.api}/user2`,
+        fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/${this.props.api}/'+global.nick,
             {method: 'GET',
             })
             .then(response => {return response.json()})

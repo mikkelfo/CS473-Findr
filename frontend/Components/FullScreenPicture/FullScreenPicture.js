@@ -22,7 +22,7 @@ export default class FullScreenPicture extends Component {
     }
 
     fetchPicture(postID) {
-        fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getPost/${postID}`,
+        fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getPost/${postID}',
             {method: 'GET',
             })
             .then(response => {return response.json()})

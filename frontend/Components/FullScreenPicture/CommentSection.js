@@ -17,21 +17,21 @@ export default class CommentSection extends Component {
     }
 
     async fetch(postID) {
-        let comments = await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/getPostComment/${postID}`,
+        let comments = await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/getPostComment/${postID}',
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));
         this.setState({data: comments})
     }
     async addComment(content, postID) {
-        await fetch(`http://ec2-15-164-211-213.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/comment`,{
+        await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/comment',{
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body:JSON.stringify( {
-                "username": "user2", //await fetch(`http://192.168.0.9:8088/api/v1/user/currentUser`)
+                "username": global.nick,
                 "content": content,
                 "postID": postID
             })}

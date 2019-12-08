@@ -24,7 +24,19 @@ export default class Form extends Component {
         if(this.props.type !== 'Login')
         {
             await AsyncStorage.setItem(nickname, password);
-
+            var banane = fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/user/user', {
+              method: 'POST',
+               headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json'
+                },
+              body: JSON.stringify({
+                    "username": nickname,
+                    "password": password,
+                    "reputation": 0
+              }),
+            });
+            alert(banane)
 
             Keyboard.dismiss();
             alert("You successfully registered")
