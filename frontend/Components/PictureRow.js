@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Thumbnail from "./Thumbnail";
 import {Loading} from "./Loading";
+import IconFA from 'react-native-vector-icons/FontAwesome5';
 
 export default class PictureRow extends Component {
     constructor (props) {
@@ -48,7 +49,10 @@ export default class PictureRow extends Component {
             return (
                 <View style={styles.container}>
                     <TouchableOpacity onPress={() => this.expandRow()}>
-                        <Text style={styles.title}>{this.props.title}</Text>
+                        <Text style={[styles.title, {justifyContent:"center"}]}>{this.props.title}&nbsp;
+                            {this.state.horizontal && <IconFA name="caret-right" size={20}/>}
+                            {!this.state.horizontal && <IconFA name="caret-down" size={20}/>}
+                        </Text>
                     </TouchableOpacity>
                     <FlatList
                         contentContainerStyle={styles.list}
