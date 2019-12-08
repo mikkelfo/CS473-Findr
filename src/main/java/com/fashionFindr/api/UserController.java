@@ -38,13 +38,15 @@ public class UserController {
     }
 
     @PostMapping("user")
-    public void addUser(@RequestBody User user){
+    public int addUser(@RequestBody User user){
 //        taking the request body sent in and send to the USer and the JSon object turns into an User
         System.out.println(user.getPassword());
         if (getUserInfo(user.getUsername()) == null){
             userService.saveOrUpdateUser(user);
+            return 1;
         } else {
             System.out.println("user alr exists");
+            return 0;
         }
 
     }
