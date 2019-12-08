@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import PictureRow from "../Components/PictureRow";
 
 export default class BookmarkScreen extends Component {
+
     render() {
         return (
             <View style={styles.container}>

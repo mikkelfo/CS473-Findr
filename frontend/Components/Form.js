@@ -10,34 +10,42 @@ export default class Form extends Component {
             nickname:'',
             password: ''
         }
+        global.nick;
+        global.pass;
     }
-    saveData =async()=>{
-        const {nickname,password} = this.state;
 
-        // TODO: save data with asyncstorage
-        let loginDetails={
-            nickname: nickname,
-            password: password
-        }
+    saveData =async()=>{
+
+        const {nickname,password} = this.state;
+        global.nick= nickname;
+        global.pass=  password;
+
+        AsyncStorage.setItem("a", "a");
         if(this.props.type !== 'Login')
         {
-            await AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+            await AsyncStorage.setItem(nickname, password);
 
             Keyboard.dismiss();
             alert("You successfully registered")
-                //\n Nickname: " + nickname + ' password: ' + password + ' \n PS: Shall we even show the password etc. ?'
-            this.props.nav.navigate('Main');
 
+            this.props.nav.navigate('Main');
         }
         else if(this.props.type === 'Login')
         {
-            if (nickname.toLowerCase() === 'user' && password.toLowerCase() === 'user') {
-                this.props.nav.navigate('Main');
-            } else {
-                alert("Invalid: try 'user'")
-            }
+           try {
+               const value = await AsyncStorage.getItem(nickname);
+               if (password === value) {
+                    this.props.nav.navigate('Main');
+               }
+               else{
+                    alert("Your nickname or your password is wrong");
+               }
+             } catch (error) {
+               console.log(error.message);
+             }
         }
     }
+
 
     render() {
         return(

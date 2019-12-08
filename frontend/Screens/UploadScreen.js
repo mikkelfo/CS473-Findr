@@ -74,7 +74,7 @@ export default class UploadScreen extends Component {
                 />
          {image &&
                    <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <Button onPress={() => {alert("submitted"); this.props.navigation.navigate("Main")}}
+        <Button onPress={() => {alert("Submitted"); this.props.navigation.navigate("Main")}}
                   title="Submit"
         />
         </View>

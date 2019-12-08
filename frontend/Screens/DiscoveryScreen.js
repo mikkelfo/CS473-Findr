@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, FlatList, StyleSheet, Text, View} from "react-native";
+import {Dimensions, FlatList, StyleSheet, Text, View,AsyncStorage} from "react-native";
 import Header from "../Components/Header";
 import Thumbnail from "../Components/Thumbnail";
 import {Loading} from "../Components/Loading";
