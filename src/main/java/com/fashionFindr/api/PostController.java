@@ -29,10 +29,16 @@ public class PostController {
         return postService.getPost(postID);
     }
 
-    @GetMapping ("getSwiperPosts")
-    public List<Post> getSwiperPosts(){
-        return postService.getUnansweredPosts();
+//    @GetMapping ("getSwiperPosts")
+//    public List<Post> getSwiperPosts(){
+//        return postService.getUnansweredPosts();
+//    }
+
+    @GetMapping ("getSwiperPosts/{username}")
+    public List<Post> getSwiperPosts(@PathVariable("username") String username){
+        return postService.getUnansweredPosts(username);
     }
+
 
     @PostMapping(value="/updateCorrectlyAnswered/{username}/{postID}/{correctlyAnswered}")
     public void updateCorrectlyAnswered(@PathVariable("postID") int postID, @PathVariable("username") String username,

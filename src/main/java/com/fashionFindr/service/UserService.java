@@ -36,22 +36,31 @@ public class UserService {
         userDao.save(user);
     }
 
-
-
     public void saveOrUpdateUser(User user){
         userDao.save(user);
     }
 
     public void addUserFavorites(String username, int postID){
         User user = userDao.findByUsername(username);
-        user.setUserFavorites(postID);
-        userDao.save(user);
+        List currentUserFavourites = user.getUserFavorites();
+        if (currentUserFavourites.contains(postID)){
+            System.out.println("post alr in favorites");
+        } else {
+            user.setUserFavorites(postID);
+            userDao.save(user);
+        }
     }
 
     public void addUserMatches(String username, int postID){
         User user = userDao.findByUsername(username);
-        user.setUserMatches(postID);
-        userDao.save(user);
+        List currentUserMatches = user.getUserMatches();
+        if (currentUserMatches.contains(postID)){
+            System.out.println("post already in match");
+
+        } else {
+            user.setUserMatches(postID);
+            userDao.save(user);
+        }
     }
 
     public User getUserInfo(String username){
@@ -98,6 +107,17 @@ public class UserService {
         } else {
             System.out.println("Incorrect password");
             return null;
+        }
+    }
+
+    public void addUserSeenPosts(String username, int postID){
+        User user = getUserInfo(username);
+        List currentUserSeenPosts = user.getUserSeenPosts();
+        if (currentUserSeenPosts.contains(postID)){
+            System.out.println("alr stored in seen posts list");
+        } else {
+            user.setUserSeenPosts(postID);
+            userDao.save(user);
         }
     }
 }

@@ -38,13 +38,15 @@ public class UserController {
     }
 
     @PostMapping("user")
-    public void addUser(@RequestBody User user){
+    public int addUser(@RequestBody User user){
 //        taking the request body sent in and send to the USer and the JSon object turns into an User
         System.out.println(user.getPassword());
         if (getUserInfo(user.getUsername()) == null){
             userService.saveOrUpdateUser(user);
+            return 1;
         } else {
             System.out.println("user alr exists");
+            return 0;
         }
 
     }
@@ -64,11 +66,13 @@ public class UserController {
 
     @PostMapping(value = "/addFavorites/{username}/{postID}")
     public void addFavorites(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username, postID);
         userService.addUserFavorites(username, postID);
     }
 
     @PostMapping(value = "/addMatches/{username}/{postID}")
     public void addMatches(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username,postID);
         userService.addUserMatches(username, postID);
     }
 
@@ -80,5 +84,10 @@ public class UserController {
     @GetMapping(value = "getUserPosts/{username}")
     public List<Post> getUserPosts(@PathVariable("username") String username){
         return userService.getUserPosts(username);
+    }
+
+    @PostMapping(value = "addUserSeenPosts/{username}/{postID}")
+    public void addSeenPosts(@PathVariable("username") String username, @PathVariable("postID") int postID){
+        userService.addUserSeenPosts(username,postID);
     }
 }
