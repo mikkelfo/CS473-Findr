@@ -43,6 +43,7 @@ public class UserController {
         System.out.println(user.getPassword());
         if (getUserInfo(user.getUsername()) == null){
             userService.saveOrUpdateUser(user);
+            System.out.println("user added successfully");
             return 1;
         } else {
             System.out.println("user alr exists");

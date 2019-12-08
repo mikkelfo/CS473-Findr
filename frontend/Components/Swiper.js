@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View, Image} from "react-native";
 
 import CardStack, {Card} from 'react-native-card-stack-swiper';
 import Constants from "expo-constants";
@@ -71,7 +71,6 @@ export default class Swiper extends Component {
     }
 
     fetchCards() {
-        alert(global.nick)
         fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/getSwiperPosts/'+global.nick+'/',
             {method: 'GET',
             })
@@ -85,6 +84,7 @@ export default class Swiper extends Component {
                 <Card style={[styles.card]} key={item.postID}>
                     <View style={styles.textcontainer}>
                         <Text style={styles.title}>{item.title}</Text>
+                            <Image style={{width: 300, height: 400,}} source={{uri: item.imageSrc}}/>
                         <Text style={styles.description}>{item.description}</Text>
                     </View>
                 </Card>
@@ -166,10 +166,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        flex: 1,
     },
     description: {
         fontSize: 15,
-        marginTop: 20,
+        marginTop: 10,
     },
 });

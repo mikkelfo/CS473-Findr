@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import {Button, Image, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from "react-native";
+import {
+    AsyncStorage,
+    Button,
+    Image,
+    Keyboard,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableWithoutFeedback,
+    View
+} from "react-native";
 import Header from "../Components/Header";
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -26,6 +36,24 @@ export default class UploadScreen extends Component {
         if (!cancelled) this.setState({ image: uri });
       };
 
+      upload = async()=>{
+          const {image,title,description} = this.state;
+          const test = JSON.stringify({
+              "title": title,
+              "imageSrc": "data:image/jpeg;base64,"+image.base64,
+              "description": description,
+              "username": "user1"
+          });
+          await fetch('http://143.248.219.120:8088/api/v1/post/post', {
+              method: 'POST',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              body: test,
+          });
+
+      }
     render(){
     let { image } = this.state;
     return(
@@ -42,7 +70,7 @@ export default class UploadScreen extends Component {
                     this.setState(
                         (previousState) => {
                             return{
-                                typedText: text
+                                title: text
                             };
                         }
                     );
@@ -61,7 +89,7 @@ export default class UploadScreen extends Component {
                             this.setState(
                                 (previousState) => {
                                     return{
-                                        typedText: text
+                                        description: text
                                     };
                                 }
                             );
@@ -73,8 +101,8 @@ export default class UploadScreen extends Component {
                   onPress={this._pickImage}
                 />
          {image &&
-                   <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <Button onPress={() => {alert("Submitted"); this.props.navigation.navigate("Main")}}
+                   <Image source={{ uri: image.uri }} style={{ width: 200, height: 200 }} />}
+        <Button onPress={() => this.upload()}
                   title="Submit"
         />
         </View>
@@ -99,14 +127,14 @@ export default class UploadScreen extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
+      aspect: [3, 4],
+      quality: 1,
+        base64: true
     });
 
-    console.log(result);
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image: result });
     }
   };
 }

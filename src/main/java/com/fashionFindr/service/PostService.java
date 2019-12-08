@@ -4,7 +4,6 @@ import com.fashionFindr.dao.CommentDao;
 import com.fashionFindr.dao.PostDao;
 import com.fashionFindr.model.Post;
 import com.fashionFindr.model.User;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
