@@ -42,7 +42,7 @@ export default class UploadScreen extends Component {
               "title": title,
               "imageSrc": "data:image/jpeg;base64,"+image.base64,
               "description": description,
-              "username": "user1"
+              "username": global.nick
           });
           await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/post/post', {
               method: 'POST',
@@ -100,8 +100,6 @@ export default class UploadScreen extends Component {
                   title="Pick an image from camera roll"
                   onPress={this._pickImage}
                 />
-         {image &&
-                   <Image source={{ uri: image.uri }} style={{ width: 200, height: 200 }} />}
         <Button onPress={() => this.upload()}
                   title="Submit"
         />

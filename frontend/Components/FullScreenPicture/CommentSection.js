@@ -13,11 +13,12 @@ export default class CommentSection extends Component {
         this.addComment = this.addComment.bind(this);
     }
     componentDidMount() {
+        console.log(this.props.id)
         this.fetch(this.props.id)
     }
 
     async fetch(postID) {
-        let comments = await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/getPostComment/${postID}',
+        let comments = await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/getPostComment/' + postID,
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));

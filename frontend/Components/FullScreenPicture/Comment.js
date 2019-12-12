@@ -24,7 +24,7 @@ export class Comment extends Component {
     }
 
     changeVotes(action) {
-        fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/${action}Comment/${this.props.id}',{
+        fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/comment/${action}Comment/' + this.props.id,{
             method: "POST",
             body:JSON.stringify({
                 "commentID": this.props.id,
@@ -86,7 +86,7 @@ export class Comment extends Component {
     }
 
     async fetchReplies(postID) {
-        let replies = await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/getCommentReplies/${postID}',
+        let replies = await fetch('http://ec2-15-164-96-242.ap-northeast-2.compute.amazonaws.com:8088/api/v1/reply/getCommentReplies/' + postID,
             {method: 'GET',})
             .then(response => response.json())
             .catch(e => console.log(e));

@@ -36,8 +36,6 @@ export default class Form extends Component {
                     "reputation": 0
               }),
             });
-            alert(banane)
-
             Keyboard.dismiss();
             alert("You successfully registered")
 
